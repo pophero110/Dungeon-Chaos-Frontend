@@ -1,5 +1,14 @@
 <div class="board">
   <div class="board__tile" *ngFor="let tile of board | async">
-    {{ tile }}
+    <app-wall-svg *ngIf="tile === 'W'"></app-wall-svg>
+    <app-path-svg *ngIf="tile === 'P'"></app-path-svg>
+    <div
+      *ngIf="tile === 'S'"
+      style="background-color: lightblue; height: 100%"
+    ></div>
+    <div
+      *ngIf="tile === 'E'"
+      style="background-color: greenyellow; height: 100%"
+    ></div>
   </div>
 </div>
