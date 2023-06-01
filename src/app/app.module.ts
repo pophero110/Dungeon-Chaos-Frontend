@@ -7,6 +7,7 @@ import { BoardComponent } from './board/board.component';
 import { boardReducer } from './state/board/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './state/board/board.effects';
+import { SvgModule } from './svg/svg.module';
 @NgModule({
   declarations: [AppComponent, BoardComponent],
   imports: [
@@ -14,6 +15,7 @@ import { BookEffects } from './state/board/board.effects';
     StoreModule.forRoot({ board: boardReducer }),
     EffectsModule.forRoot([BookEffects]),
     HttpClientModule,
+    SvgModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
