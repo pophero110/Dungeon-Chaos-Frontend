@@ -1,11 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { fetchBoardSuccess } from './board.actions';
+import { Board } from '../../board/board.model';
 
-export interface BoardState {
-  tiles: string[];
-}
-
-export const initialState: BoardState = {
+export const initialState: Board = {
   tiles: [],
 };
 
