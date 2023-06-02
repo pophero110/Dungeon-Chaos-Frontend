@@ -8,6 +8,7 @@ import {
   fetchBoardError,
   fetchBoardSuccess,
 } from './board.actions';
+import { FetchBoardResponse } from 'src/app/utils/boardApi';
 
 @Injectable()
 export class BookEffects {
@@ -18,7 +19,7 @@ export class BookEffects {
       mergeMap(() =>
         this.boardService.fetchBoard().pipe(
           map((response) => {
-            const tiles: string[] = response as string[];
+            const tiles: string[] = (response as FetchBoardResponse).board;
             return fetchBoardSuccess({
               tiles: tiles.map((row) => row.split('')).flat(),
             });
