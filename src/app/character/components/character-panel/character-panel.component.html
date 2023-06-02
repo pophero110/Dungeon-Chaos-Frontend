@@ -2,12 +2,15 @@
   class="characterPanel"
   *ngIf="selectedCharacter | async as selectedCharacter"
 >
-  <app-warrior-token
-    *ngIf="selectedCharacter?.name === 'Warrior'"
-  ></app-warrior-token>
-  <app-rogue-token
-    *ngIf="selectedCharacter?.name === 'Rogue'"
-  ></app-rogue-token>
+  <div class="characterPanel__token">
+    <app-warrior-token
+      *ngIf="selectedCharacter?.name === 'Warrior'"
+    ></app-warrior-token>
+    <app-rogue-token
+      *ngIf="selectedCharacter?.name === 'Rogue'"
+    ></app-rogue-token>
+  </div>
+
   <ul>
     <li>
       <p>Name: {{ selectedCharacter.name }}</p>

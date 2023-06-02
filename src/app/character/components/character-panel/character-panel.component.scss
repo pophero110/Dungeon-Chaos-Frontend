@@ -9,4 +9,9 @@
     flex-direction: column;
     list-style: none;
   }
+
+  &__token {
+    height: 150px;
+    width: 150px;
+  }
 }
