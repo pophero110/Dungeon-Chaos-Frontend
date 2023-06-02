@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectBoard } from '../state/board/board.selectors';
-import { fetchBoard } from '../state/board/board.actions';
+import { selectBoard } from '../../state/board.selectors';
+import { fetchBoard } from '../../state/board.actions';
 
 @Component({
   selector: 'app-board',
