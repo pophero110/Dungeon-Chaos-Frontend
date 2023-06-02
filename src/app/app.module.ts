@@ -7,7 +7,7 @@ import { BoardComponent } from './board/board.component';
 import { boardReducer } from './state/board/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './state/board/board.effects';
-import { SvgModule } from './svg/svg.module';
+import { TokenModule } from './token/token.module';
 import { CharacterModule } from './character/character.module';
 import { characterReducer } from './state/character/character.reducer';
 import { CharacterEffects } from './state/character/character.effects';
@@ -20,7 +20,7 @@ import { CharacterEffects } from './state/character/character.effects';
     StoreModule.forRoot({ board: boardReducer, character: characterReducer }),
     EffectsModule.forRoot([BookEffects, CharacterEffects]),
     HttpClientModule,
-    SvgModule,
+    TokenModule,
     CharacterModule,
   ],
   providers: [],

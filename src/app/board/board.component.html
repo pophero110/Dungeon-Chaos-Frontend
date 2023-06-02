@@ -1,7 +1,7 @@
 <div class="board">
   <div class="board__tile" *ngFor="let tile of board | async">
-    <app-wall-svg *ngIf="tile === 'W'"></app-wall-svg>
-    <app-path-svg *ngIf="tile === 'P'"></app-path-svg>
+    <app-wall-token *ngIf="tile === 'W'"></app-wall-token>
+    <app-path-token *ngIf="tile === 'P'"></app-path-token>
     <div
       *ngIf="tile === 'S'"
       style="background-color: lightblue; height: 100%"
