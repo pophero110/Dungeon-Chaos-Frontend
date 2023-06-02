@@ -12,7 +12,7 @@ import { CharacterService } from 'src/app/character/services/character.service';
 
 @Injectable()
 export class CharacterEffects {
-  fetchBoard$ = createEffect(() =>
+  fetchCharacter$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fetchCharacter),
       mergeMap(() =>
