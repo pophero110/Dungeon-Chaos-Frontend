@@ -1,10 +1,10 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { CharacterState } from './character.reducer';
 
-export const selectBoardState =
+export const selectCharacterState =
   createFeatureSelector<CharacterState>('character');
 
 export const selectCharacter = createSelector(
-  selectBoardState,
+  selectCharacterState,
   (state) => state.characters
 );
