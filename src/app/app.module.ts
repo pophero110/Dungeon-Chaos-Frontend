@@ -3,19 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { BoardComponent } from './board/board.component';
-import { boardReducer } from './state/board/board.reducer';
+import { boardReducer } from './board/state/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { BoardEffects } from './state/board/board.effects';
-import { SvgModule } from './svg/svg.module';
+import { CharacterModule } from './character/character.module';
+import { BoardModule } from './board/board.module';
+import { CharacterEffects } from './character/character/character.effects';
+import { PlayerEffects } from './player/state/player.effects';
+import { characterReducer } from './character/character/character.reducer';
+import { playerReducer } from './player/state/player.reducer';
+import { BoardEffects } from './board/state/board.effects';
 @NgModule({
-  declarations: [AppComponent, BoardComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({ board: boardReducer }),
-    EffectsModule.forRoot([BoardEffects]),
+    StoreModule.forRoot({
+      board: boardReducer,
+      character: characterReducer,
+      player: playerReducer,
+    }),
+    EffectsModule.forRoot([BoardEffects, CharacterEffects, PlayerEffects]),
     HttpClientModule,
-    SvgModule,
+    CharacterModule,
+    BoardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
