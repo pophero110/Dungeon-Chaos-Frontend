@@ -10,13 +10,19 @@ import { CharacterModule } from './character/character.module';
 import { characterReducer } from './character/character/character.reducer';
 import { CharacterEffects } from './character/character/character.effects';
 import { BoardModule } from './board/board.module';
+import { playerReducer } from './player/state/player.reducer';
+import { PlayerEffects } from './player/state/player.effects';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({ board: boardReducer, character: characterReducer }),
-    EffectsModule.forRoot([BookEffects, CharacterEffects]),
+    StoreModule.forRoot({
+      board: boardReducer,
+      character: characterReducer,
+      player: playerReducer,
+    }),
+    EffectsModule.forRoot([BookEffects, CharacterEffects, PlayerEffects]),
     HttpClientModule,
     CharacterModule,
     BoardModule,
