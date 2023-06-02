@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import {
   fetchCharacter,
   selectCharacter,
-} from 'src/app/state/character/character.actions';
-import { selectCharacters } from 'src/app/state/character/character.selectors';
+} from 'src/app/character/character/character.actions';
+import { selectCharacters } from 'src/app/character/character/character.selectors';
 
 @Component({
   selector: 'app-character-form',
