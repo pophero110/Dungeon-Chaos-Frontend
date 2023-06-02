@@ -4,8 +4,10 @@
     <app-path-token *ngIf="tile === 'P'"></app-path-token>
     <div *ngIf="tile === 'S'">
       <div class="board__tile-character" *ngIf="player | async as player">
-        <app-rogue-token *ngIf="player.name === 'Warrior'"></app-rogue-token>
-        <app-warrior-token *ngIf="player.name === 'Rogue'"></app-warrior-token>
+        <app-warrior-token
+          *ngIf="player.name === 'Warrior'"
+        ></app-warrior-token>
+        <app-rogue-token *ngIf="player.name === 'Rogue'"></app-rogue-token>
       </div>
     </div>
     <div

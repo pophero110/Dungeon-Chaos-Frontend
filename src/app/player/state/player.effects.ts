@@ -15,16 +15,16 @@ export class PlayerEffects {
   createPlayer$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createPlayer),
-      mergeMap(() =>
-        this.playerService.createPlayer('1').pipe(
+      mergeMap((action) => {
+        return this.playerService.createPlayer(action.selectedCharacterId).pipe(
           map((response) => {
             return createPlayerSuccess({
               player: response as Player,
             });
           }),
           catchError(() => of(createPlayerError))
-        )
-      )
+        );
+      })
     )
   );
 
