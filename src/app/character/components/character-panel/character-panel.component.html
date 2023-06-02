@@ -1,0 +1,28 @@
+<div
+  class="characterPanel"
+  *ngIf="selectedCharacter | async as selectedCharacter"
+>
+  <app-warrior-token
+    *ngIf="selectedCharacter?.name === 'Warrior'"
+  ></app-warrior-token>
+  <app-rogue-token
+    *ngIf="selectedCharacter?.name === 'Rogue'"
+  ></app-rogue-token>
+  <ul>
+    <li>
+      <p>Name: {{ selectedCharacter.name }}</p>
+    </li>
+    <li>
+      <p>Health: {{ selectedCharacter.health }}</p>
+    </li>
+    <li>
+      <p>Attack: {{ selectedCharacter.attack }}</p>
+    </li>
+    <li>
+      <p>Defense: {{ selectedCharacter.defense }}</p>
+    </li>
+    <li>
+      <p>Speed: {{ selectedCharacter.speed }}</p>
+    </li>
+  </ul>
+</div>

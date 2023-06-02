@@ -1,0 +1,12 @@
+.characterPanel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    list-style: none;
+  }
+}
