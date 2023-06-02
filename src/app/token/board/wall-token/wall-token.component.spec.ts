@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WallSvgComponent } from './wall-svg.component';
+import { WallTokenComponent } from './wall-token.component';
 
-describe('WallSvgComponent', () => {
-  let component: WallSvgComponent;
-  let fixture: ComponentFixture<WallSvgComponent>;
+describe('WallTokenComponent', () => {
+  let component: WallTokenComponent;
+  let fixture: ComponentFixture<WallTokenComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WallSvgComponent]
+      declarations: [WallTokenComponent],
     });
-    fixture = TestBed.createComponent(WallSvgComponent);
+    fixture = TestBed.createComponent(WallTokenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

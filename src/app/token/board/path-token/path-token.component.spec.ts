@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PathSvgComponent } from './path-svg.component';
+import { PathTokenComponent } from './path-token.component';
 
-describe('PathSvgComponent', () => {
-  let component: PathSvgComponent;
-  let fixture: ComponentFixture<PathSvgComponent>;
+describe('PathTokenComponent', () => {
+  let component: PathTokenComponent;
+  let fixture: ComponentFixture<PathTokenComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PathSvgComponent]
+      declarations: [PathTokenComponent],
     });
-    fixture = TestBed.createComponent(PathSvgComponent);
+    fixture = TestBed.createComponent(PathTokenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
