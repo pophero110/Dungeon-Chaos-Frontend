@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { fetchBoardUrl } from '../utils/boardApi';
+import { fetchBoardUrl } from '../../utils/boardApi';
 @Injectable({
   providedIn: 'root',
 })
