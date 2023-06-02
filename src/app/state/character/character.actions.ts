@@ -1,11 +1,16 @@
 import { createAction, props } from '@ngrx/store';
-import { CharacterState } from './character.reducer';
+import { Character } from 'src/app/character/character.model';
 
 export const fetchCharacterSuccess = createAction(
   '[Character] Fetch Character Success',
-  props<CharacterState>()
+  props<{ characters: Character[] }>()
 );
 export const fetchCharacter = createAction('[Character] Fetch Character');
 export const fetchCharacterError = createAction(
   '[Character] Fetch Character Error'
+);
+
+export const selectCharacter = createAction(
+  '[Character] Select Character',
+  props<{ selectedCharacterId: string }>()
 );

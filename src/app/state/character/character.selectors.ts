@@ -4,7 +4,7 @@ import { CharacterState } from './character.reducer';
 export const selectCharacterState =
   createFeatureSelector<CharacterState>('character');
 
-export const selectCharacter = createSelector(
+export const selectCharacters = createSelector(
   selectCharacterState,
   (state) => state.characters
 );

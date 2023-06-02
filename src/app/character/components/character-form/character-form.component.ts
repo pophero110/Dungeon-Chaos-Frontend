@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { fetchCharacter } from 'src/app/state/character/character.actions';
-import { selectCharacter } from 'src/app/state/character/character.selectors';
+import {
+  fetchCharacter,
+  selectCharacter,
+} from 'src/app/state/character/character.actions';
+import { selectCharacters } from 'src/app/state/character/character.selectors';
 
 @Component({
   selector: 'app-character-form',
@@ -9,8 +12,8 @@ import { selectCharacter } from 'src/app/state/character/character.selectors';
   styleUrls: ['./character-form.component.scss'],
 })
 export class CharacterFormComponent implements OnInit {
-  selectedCharacterId = 1;
-  characters = this.store.select(selectCharacter);
+  selectedCharacterId!: string;
+  characters = this.store.select(selectCharacters);
   constructor(private store: Store) {}
   ngOnInit(): void {
     this.store.dispatch(fetchCharacter());
@@ -18,7 +21,9 @@ export class CharacterFormComponent implements OnInit {
 
   onSubmit() {
     if (this.selectedCharacterId) {
-      console.log(this.selectedCharacterId);
+      this.store.dispatch(
+        selectCharacter({ selectedCharacterId: this.selectedCharacterId })
+      );
     }
   }
 }
