@@ -1,18 +1,27 @@
 <div class="board">
-  <div class="board__tile" *ngFor="let tile of board | async">
-    <app-wall-token *ngIf="tile === 'W'"></app-wall-token>
-    <app-path-token *ngIf="tile === 'P'"></app-path-token>
-    <div *ngIf="tile === 'S'">
-      <div class="board__tile-character" *ngIf="player | async as player">
-        <app-warrior-token
-          *ngIf="player.name === 'Warrior'"
-        ></app-warrior-token>
-        <app-rogue-token *ngIf="player.name === 'Rogue'"></app-rogue-token>
+  <div
+    class="board__tile"
+    *ngFor="let tile of board | async"
+    (click)="handleTileClick(tile)"
+  >
+    <ng-container [ngSwitch]="tile">
+      <app-wall-token *ngSwitchCase="'W'"></app-wall-token>
+      <app-path-token
+        class="board__tile-path"
+        *ngSwitchCase="'P'"
+      ></app-path-token>
+      <div *ngSwitchCase="'S'">
+        <div class="board__tile-character" *ngIf="player | async as player">
+          <ng-container [ngSwitch]="player.name">
+            <app-warrior-token *ngSwitchCase="'Warrior'"></app-warrior-token>
+            <app-rogue-token *ngSwitchCase="'Rogue'"></app-rogue-token>
+          </ng-container>
+        </div>
       </div>
-    </div>
-    <div
-      *ngIf="tile === 'E'"
-      style="background-color: greenyellow; height: 100%"
-    ></div>
+      <div
+        *ngSwitchCase="'E'"
+        style="background-color: greenyellow; height: 100%"
+      ></div>
+    </ng-container>
   </div>
 </div>
