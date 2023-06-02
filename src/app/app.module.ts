@@ -8,6 +8,7 @@ import { boardReducer } from './state/board/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './state/board/board.effects';
 import { SvgModule } from './svg/svg.module';
+import { CharacterModule } from './character/character.module';
 @NgModule({
   declarations: [AppComponent, BoardComponent],
   imports: [
@@ -16,6 +17,7 @@ import { SvgModule } from './svg/svg.module';
     EffectsModule.forRoot([BookEffects]),
     HttpClientModule,
     SvgModule,
+    CharacterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
