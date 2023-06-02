@@ -1,8 +1,9 @@
 import { createAction, props } from '@ngrx/store';
+import { BoardState } from './board.reducer';
 
 export const fetchBoardSuccess = createAction(
   '[Board] Fetch Board Success',
-  props<{ tiles: string[] }>()
+  props<BoardState>()
 );
 export const fetchBoard = createAction('[Board] Fetch Board');
 export const fetchBoardError = createAction('[Board] Fetch Board Error');
