@@ -5,6 +5,7 @@ import {
   selectCharacter,
 } from 'src/app/character/character/character.actions';
 import { selectCharacters } from 'src/app/character/character/character.selectors';
+import { createPlayer } from 'src/app/player/state/player.actions';
 
 @Component({
   selector: 'app-character-form',
@@ -28,6 +29,8 @@ export class CharacterFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('create character');
+    this.store.dispatch(
+      createPlayer({ selectedCharacterId: this.selectedCharacterId })
+    );
   }
 }
