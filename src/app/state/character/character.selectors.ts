@@ -8,3 +8,8 @@ export const selectCharacters = createSelector(
   selectCharacterState,
   (state) => state.characters
 );
+
+export const selectSelectedCharacter = createSelector(
+  selectCharacterState,
+  (state) => state.selectedCharacter
+);
