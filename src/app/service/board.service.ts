@@ -8,6 +8,6 @@ export class BoardService {
   constructor(private http: HttpClient) {}
 
   fetchBoard() {
-    return this.http.post(fetchBoardUrl, {});
+    return this.http.get(fetchBoardUrl, {});
   }
 }
