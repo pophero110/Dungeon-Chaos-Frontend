@@ -1,0 +1,20 @@
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="character">Select a Character:</label>
+    <select
+      id="character"
+      name="character"
+      [(ngModel)]="selectedCharacterId"
+      required
+    >
+      <option value="" disabled>Select a character</option>
+      <option
+        *ngFor="let character of characters | async"
+        [value]="character.id"
+      >
+        {{ character.name }}
+      </option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="!selectedCharacterId">Submit</button>
+</form>
