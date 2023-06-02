@@ -5,6 +5,7 @@
       id="character"
       name="character"
       [(ngModel)]="selectedCharacterId"
+      (ngModelChange)="onCharacterSelection()"
       required
     >
       <option value="" disabled>Select a character</option>

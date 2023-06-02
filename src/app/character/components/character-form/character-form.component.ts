@@ -19,11 +19,15 @@ export class CharacterFormComponent implements OnInit {
     this.store.dispatch(fetchCharacter());
   }
 
-  onSubmit() {
+  onCharacterSelection() {
     if (this.selectedCharacterId) {
       this.store.dispatch(
         selectCharacter({ selectedCharacterId: this.selectedCharacterId })
       );
     }
+  }
+
+  onSubmit() {
+    console.log('create character');
   }
 }
