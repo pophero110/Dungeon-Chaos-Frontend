@@ -3,25 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { BoardComponent } from './board/board.component';
-import { boardReducer } from './state/board/board.reducer';
+import { boardReducer } from './board/state/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { BookEffects } from './state/board/board.effects';
-import { TokenModule } from './token/token.module';
+import { BookEffects } from './board/state/board.effects';
 import { CharacterModule } from './character/character.module';
-import { characterReducer } from './state/character/character.reducer';
-import { CharacterEffects } from './state/character/character.effects';
+import { characterReducer } from './character/character/character.reducer';
+import { CharacterEffects } from './character/character/character.effects';
+import { BoardModule } from './board/board.module';
 
 @NgModule({
-  declarations: [AppComponent, BoardComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-
     StoreModule.forRoot({ board: boardReducer, character: characterReducer }),
     EffectsModule.forRoot([BookEffects, CharacterEffects]),
     HttpClientModule,
-    TokenModule,
     CharacterModule,
+    BoardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
