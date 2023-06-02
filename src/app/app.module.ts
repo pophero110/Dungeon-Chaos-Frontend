@@ -5,14 +5,13 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { boardReducer } from './board/state/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { BookEffects } from './board/state/board.effects';
 import { CharacterModule } from './character/character.module';
-import { characterReducer } from './character/character/character.reducer';
-import { CharacterEffects } from './character/character/character.effects';
 import { BoardModule } from './board/board.module';
-import { playerReducer } from './player/state/player.reducer';
+import { CharacterEffects } from './character/character/character.effects';
 import { PlayerEffects } from './player/state/player.effects';
-
+import { characterReducer } from './character/character/character.reducer';
+import { playerReducer } from './player/state/player.reducer';
+import { BoardEffects } from './board/state/board.effects';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,7 +21,7 @@ import { PlayerEffects } from './player/state/player.effects';
       character: characterReducer,
       player: playerReducer,
     }),
-    EffectsModule.forRoot([BookEffects, CharacterEffects, PlayerEffects]),
+    EffectsModule.forRoot([BoardEffects, CharacterEffects, PlayerEffects]),
     HttpClientModule,
     CharacterModule,
     BoardModule,

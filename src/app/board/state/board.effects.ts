@@ -11,7 +11,8 @@ import {
 import { FetchBoardResponse } from 'src/app/utils/boardApi';
 
 @Injectable()
-export class BookEffects {
+export class BoardEffects {
+  // Define the effect using createEffect()
   fetchBoard$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fetchBoard),
