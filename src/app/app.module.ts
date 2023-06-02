@@ -9,12 +9,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './state/board/board.effects';
 import { SvgModule } from './svg/svg.module';
 import { CharacterModule } from './character/character.module';
+import { characterReducer } from './state/character/character.reducer';
+import { CharacterEffects } from './state/character/character.effects';
+
 @NgModule({
   declarations: [AppComponent, BoardComponent],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({ board: boardReducer }),
-    EffectsModule.forRoot([BookEffects]),
+
+    StoreModule.forRoot({ board: boardReducer, character: characterReducer }),
+    EffectsModule.forRoot([BookEffects, CharacterEffects]),
     HttpClientModule,
     SvgModule,
     CharacterModule,
