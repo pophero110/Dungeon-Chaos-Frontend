@@ -8,3 +8,8 @@ export const selectPlayer = createSelector(
   selectCharacterState,
   (state) => state.player
 );
+
+export const selectPlayerCharacterName = createSelector(
+  selectCharacterState,
+  (state) => state.player?.name
+);
