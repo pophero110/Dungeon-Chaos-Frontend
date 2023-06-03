@@ -21,13 +21,8 @@ export const boardReducer = createReducer(
     tileMatrix,
     currentPlayerPosition,
   })),
-  on(makeMove, (state, { tile, position }) => {
-    if (isValidMove(state.currentPlayerPosition as number, position, tile)) {
-      return {
-        ...state,
-        currentPlayerPosition: position,
-      };
-    }
-    return { ...state };
-  })
+  on(makeMove, (state, { position }) => ({
+    ...state,
+    currentPlayerPosition: position,
+  }))
 );
