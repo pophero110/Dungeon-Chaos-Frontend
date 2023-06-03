@@ -9,9 +9,9 @@ import {
   selectPlayer,
   selectPlayerCharacterName,
 } from 'src/app/player/state/player.selectors';
-import { distinctUntilChanged, map } from 'rxjs';
+import { distinctUntilChanged, first, map } from 'rxjs';
 import { startFight } from 'src/app/fight/state/fight.actions';
-
+import { isValidMove } from '../../board.utils';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -34,8 +34,17 @@ export class BoardComponent implements OnInit {
   }
 
   handleTileClick(tile: string, position: number) {
-    if (tile === 'P') {
-      this.store.dispatch(makeMove({ tile, position }));
+    let isValidMoveResult = false;
+    this.currentPlayerPosition.pipe(first()).subscribe((value) => {
+      if (value !== null) {
+        isValidMoveResult = isValidMove(value, position);
+      }
+    });
+    if (!isValidMoveResult) {
+      return;
+    }
+    if (['P', 'S', 'E'].includes(tile)) {
+      this.store.dispatch(makeMove({ position }));
     } else if (tile === 'M') {
       this.player
         .pipe(
