@@ -1,27 +1,14 @@
 <div class="board">
   <div
     class="board__tile"
-    *ngFor="let tile of board | async"
-    (click)="handleTileClick(tile)"
+    *ngFor="let tileType of board | async | flattenTiles; let position = index"
+    (click)="handleTileClick(tileType, position)"
   >
-    <ng-container [ngSwitch]="tile">
-      <app-wall-token *ngSwitchCase="'W'"></app-wall-token>
-      <app-path-token
-        class="board__tile-path"
-        *ngSwitchCase="'P'"
-      ></app-path-token>
-      <div *ngSwitchCase="'S'">
-        <div class="board__tile-character" *ngIf="player | async as player">
-          <ng-container [ngSwitch]="player.name">
-            <app-warrior-token *ngSwitchCase="'Warrior'"></app-warrior-token>
-            <app-rogue-token *ngSwitchCase="'Rogue'"></app-rogue-token>
-          </ng-container>
-        </div>
-      </div>
-      <div
-        *ngSwitchCase="'E'"
-        style="background-color: greenyellow; height: 100%"
-      ></div>
-    </ng-container>
+    <app-tile
+      [type]="tileType"
+      [position]="position"
+      [currentPlayerPosition]="currentPlayerPosition | async"
+      [playerCharacterName]="playerCharacterName | async"
+    ></app-tile>
   </div>
 </div>
