@@ -9,7 +9,8 @@ import {
   selectPlayer,
   selectPlayerCharacterName,
 } from 'src/app/player/state/player.selectors';
-import { distinctUntilChanged } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs';
+import { startFight } from 'src/app/fight/state/fight.actions';
 
 @Component({
   selector: 'app-board',
@@ -33,6 +34,20 @@ export class BoardComponent implements OnInit {
   }
 
   handleTileClick(tile: string, position: number) {
-    this.store.dispatch(makeMove({ tile, position }));
+    if (tile === 'P') {
+      this.store.dispatch(makeMove({ tile, position }));
+    } else if (tile === 'M') {
+      this.player
+        .pipe(
+          map((player) => {
+            if (player !== null) {
+              this.store.dispatch(
+                startFight({ playerId: player.id, monsterId: 1 })
+              );
+            }
+          })
+        )
+        .subscribe();
+    }
   }
 }
