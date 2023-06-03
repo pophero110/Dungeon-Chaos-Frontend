@@ -10,5 +10,5 @@ export const fetchBoardError = createAction('[Board] Fetch Board Error');
 
 export const makeMove = createAction(
   '[Board] Make Move',
-  props<{ position: number; tile: string }>()
+  props<{ position: number }>()
 );
