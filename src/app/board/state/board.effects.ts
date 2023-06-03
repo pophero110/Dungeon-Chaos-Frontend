@@ -8,20 +8,24 @@ import {
   fetchBoardError,
   fetchBoardSuccess,
 } from './board.actions';
-import { FetchBoardResponse } from 'src/app/utils/boardApi';
+import { FetchBoardResponse } from 'src/app/utils/api/boardApi';
 
 @Injectable()
 export class BoardEffects {
-  // Define the effect using createEffect()
   fetchBoard$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fetchBoard),
       mergeMap(() =>
         this.boardService.fetchBoard().pipe(
           map((response) => {
-            const tiles: string[] = (response as FetchBoardResponse).board;
+            const tileMatrix = this.convertArrayStringIntoMatrix(
+              (response as FetchBoardResponse).board
+            );
+            const currentPlayerPosition =
+              this.findPositionOfStartingPoint(tileMatrix);
             return fetchBoardSuccess({
-              tiles: tiles.map((row) => row.split('')).flat(),
+              tileMatrix,
+              currentPlayerPosition,
             });
           }),
           catchError(() => of(fetchBoardError))
@@ -29,6 +33,20 @@ export class BoardEffects {
       )
     )
   );
+
+  private convertArrayStringIntoMatrix(array: string[]): string[][] {
+    return array.map((row) => row.split(''));
+  }
+
+  private findPositionOfStartingPoint(matrix: string[][]): number {
+    let position = 0;
+    matrix.forEach((arr, row) => {
+      arr.find((string, column) => {
+        if (string === 'S') position = row * 12 + column;
+      });
+    });
+    return position;
+  }
 
   constructor(private actions$: Actions, private boardService: BoardService) {}
 }

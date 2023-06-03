@@ -4,6 +4,13 @@
   grid-template-rows: repeat(12, 50px);
   gap: 4px;
 
+  &__tile {
+    height: 50px;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
   &__tile-character {
     display: block;
     width: 50px;

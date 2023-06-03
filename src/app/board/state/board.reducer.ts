@@ -1,15 +1,33 @@
 import { createReducer, on } from '@ngrx/store';
-import { fetchBoardSuccess } from './board.actions';
+import { fetchBoardSuccess, makeMove } from './board.actions';
+import { isValidMove } from '../board.utils';
 
 export interface BoardState {
-  tiles: string[];
+  tileMatrix: string[][];
+  currentPlayerPosition: number | null;
+  errorMessage?: string;
 }
 
 export const initialState: BoardState = {
-  tiles: [],
+  tileMatrix: [],
+  currentPlayerPosition: null,
+  errorMessage: '',
 };
 
 export const boardReducer = createReducer(
   initialState,
-  on(fetchBoardSuccess, (state, { tiles }) => ({ ...state, tiles }))
+  on(fetchBoardSuccess, (state, { tileMatrix, currentPlayerPosition }) => ({
+    ...state,
+    tileMatrix,
+    currentPlayerPosition,
+  })),
+  on(makeMove, (state, { tile, position }) => {
+    if (isValidMove(state.currentPlayerPosition as number, position, tile)) {
+      return {
+        ...state,
+        currentPlayerPosition: position,
+      };
+    }
+    return { ...state };
+  })
 );

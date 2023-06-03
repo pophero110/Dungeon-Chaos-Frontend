@@ -4,7 +4,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { BoardService } from './board.service';
-import { fetchBoardUrl } from '../../utils/boardApi';
+import { fetchBoardUrl } from '../../utils/api/boardApi';
 
 describe('BoardService', () => {
   let service: BoardService;

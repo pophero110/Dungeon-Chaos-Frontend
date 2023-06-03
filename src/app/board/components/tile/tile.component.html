@@ -1,0 +1,13 @@
+<div *ngIf="position === currentPlayerPosition" class="board__tile-character">
+  <app-warrior-token
+    *ngIf="playerCharacterName === 'Warrior'"
+  ></app-warrior-token>
+  <app-rogue-token *ngIf="playerCharacterName === 'Rogue'"></app-rogue-token>
+</div>
+
+<ng-container *ngIf="position !== currentPlayerPosition" [ngSwitch]="type">
+  <app-path-token *ngSwitchCase="'P'"></app-path-token>
+  <app-wall-token *ngSwitchCase="'W'"></app-wall-token>
+  <app-entry-token *ngSwitchCase="'S'"></app-entry-token>
+  <app-portal-token *ngSwitchCase="'E'"></app-portal-token>
+</ng-container>

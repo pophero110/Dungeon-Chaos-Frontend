@@ -7,3 +7,8 @@ export const fetchBoardSuccess = createAction(
 );
 export const fetchBoard = createAction('[Board] Fetch Board');
 export const fetchBoardError = createAction('[Board] Fetch Board Error');
+
+export const makeMove = createAction(
+  '[Board] Make Move',
+  props<{ position: number; tile: string }>()
+);

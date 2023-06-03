@@ -7,11 +7,11 @@ import { boardReducer } from './board/state/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CharacterModule } from './character/character.module';
 import { BoardModule } from './board/board.module';
-import { CharacterEffects } from './character/character/character.effects';
 import { PlayerEffects } from './player/state/player.effects';
-import { characterReducer } from './character/character/character.reducer';
 import { playerReducer } from './player/state/player.reducer';
 import { BoardEffects } from './board/state/board.effects';
+import { CharacterEffects } from './character/state/character.effects';
+import { characterReducer } from './character/state/character.reducer';
 @NgModule({
   declarations: [AppComponent],
   imports: [

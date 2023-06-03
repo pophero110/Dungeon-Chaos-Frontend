@@ -8,7 +8,7 @@ import {
   fetchCharacterSuccess,
 } from './character.actions';
 import { Character } from 'src/app/character/character.model';
-import { CharacterService } from 'src/app/character/services/character.service';
+import { CharacterService } from 'src/app/character/service/character.service';
 
 @Injectable()
 export class CharacterEffects {

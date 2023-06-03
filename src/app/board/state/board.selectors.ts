@@ -1,9 +1,14 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { Board } from 'src/app/board/board.model';
+import { BoardState } from './board.reducer';
 
-export const selectBoardState = createFeatureSelector<Board>('board');
+export const selectBoardState = createFeatureSelector<BoardState>('board');
 
 export const selectBoard = createSelector(
   selectBoardState,
-  (state) => state.tiles
+  (state) => state.tileMatrix
+);
+
+export const selectCurrentPlayerPosition = createSelector(
+  selectBoardState,
+  (state) => state.currentPlayerPosition
 );
