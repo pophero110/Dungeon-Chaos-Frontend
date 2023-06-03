@@ -1,11 +1,8 @@
 // pure function
 export const isValidMove = (
   currentPosition: number,
-  targetPosition: number,
-  tile: string
+  targetPosition: number
 ): boolean => {
-  // check tile type
-  if (tile !== 'P') return false;
   // check left tile
   if (currentPosition - targetPosition === 1) return true;
   // check right tile
