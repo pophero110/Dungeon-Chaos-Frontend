@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectSelectedCharacter } from 'src/app/character/character/character.selectors';
+import { selectSelectedCharacter } from '../../state/character.selectors';
 
 @Component({
   selector: 'app-character-panel',

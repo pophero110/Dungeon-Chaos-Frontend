@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { createPlayerUrl } from 'src/app/utils/playerApi';
+import { createPlayerUrl } from 'src/app/utils/api/playerApi';
 
 @Injectable({
   providedIn: 'root',

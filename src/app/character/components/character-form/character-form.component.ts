@@ -3,9 +3,10 @@ import { Store } from '@ngrx/store';
 import {
   fetchCharacter,
   selectCharacter,
-} from 'src/app/character/character/character.actions';
-import { selectCharacters } from 'src/app/character/character/character.selectors';
+} from 'src/app/character/state/character.actions';
+
 import { createPlayer } from 'src/app/player/state/player.actions';
+import { selectCharacters } from '../../state/character.selectors';
 
 @Component({
   selector: 'app-character-form',
