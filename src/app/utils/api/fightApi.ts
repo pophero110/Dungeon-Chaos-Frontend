@@ -1,16 +1,12 @@
 import { environment } from 'src/environment';
 
 export interface FightRequest {
-  playerId: string;
-  monsterId: string;
+  playerId: number;
+  monsterId: number;
 }
 
 export const startFightUlr = `${environment.apiUrl}/api/fights/start`;
 
-export const playerPerformActionUrl = (fightId: string) => {
-  `${environment.apiUrl}/api/fights/${fightId}/playerPerformAction`;
-};
-
-export const opponentPerformActionUrl = (fightId: string) => {
-  `${environment.apiUrl}/api/fights/${fightId}/opponentPerformAction`;
+export const playerPerformActionUrl = (fightId: number) => {
+  `${environment.apiUrl}/api/fights/${fightId}/performAction`;
 };
