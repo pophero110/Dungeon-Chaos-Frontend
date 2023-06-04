@@ -1,7 +1,17 @@
 <main>
-  <app-board></app-board>
-  <div class="character">
-    <app-character-panel></app-character-panel>
-    <app-character-form></app-character-form>
-  </div>
+  <section style="position: relative">
+    <app-board></app-board>
+    <app-fight-scene></app-fight-scene>
+  </section>
+
+  <ng-container *ngIf="!(player$ | async); else elseBlock">
+    <div class="character">
+      <app-character-panel></app-character-panel>
+      <app-character-form></app-character-form>
+    </div>
+  </ng-container>
+
+  <ng-template #elseBlock>
+    <app-player-panel></app-player-panel>
+  </ng-template>
 </main>
