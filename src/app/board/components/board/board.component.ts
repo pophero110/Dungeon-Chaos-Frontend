@@ -28,20 +28,29 @@ export class BoardComponent implements OnInit {
     .select(selectPlayerCharacterName)
     .pipe(distinctUntilChanged());
 
-  currentPlayerPosition!: number | null;
-  playerCharacterName: string | undefined;
-  player!: Player | null;
+  currentPlayerPosition!: number;
+  playerCharacterName!: string;
+  player!: Player;
   constructor(private store: Store) {
     this.currentPlayerPosition$
-      .pipe(map((position) => (this.currentPlayerPosition = position)))
+      .pipe(
+        map((position) => {
+          if (position) this.currentPlayerPosition = position;
+        })
+      )
       .subscribe();
 
     this.playerCharacterName$
-      .pipe(map((name) => (this.playerCharacterName = name)))
+      .pipe(
+        map((playerCharacterName) => {
+          if (playerCharacterName)
+            this.playerCharacterName = playerCharacterName;
+        })
+      )
       .subscribe();
 
     this.player$.subscribe((player) => {
-      this.player = player;
+      if (player) this.player = player;
     });
   }
 
@@ -50,14 +59,12 @@ export class BoardComponent implements OnInit {
   }
 
   handleTileClick(tile: string, position: number) {
-    if (this.currentPlayerPosition) {
-      if (!isValidMove(this.currentPlayerPosition, position)) {
-        return;
-      }
+    if (!isValidMove(this.currentPlayerPosition, position)) {
+      return;
     }
     if (['P', 'S', 'E'].includes(tile)) {
       this.store.dispatch(makeMove({ position }));
-    } else if (tile === 'M' && this.player) {
+    } else if (tile === 'M') {
       this.store.dispatch(
         startFight({ playerId: this.player.id, monsterId: 1 })
       );
