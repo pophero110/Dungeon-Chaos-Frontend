@@ -7,6 +7,6 @@ export interface FightRequest {
 
 export const startFightUlr = `${environment.apiUrl}/api/fights/start`;
 
-export const playerPerformActionUrl = (fightId: number) => {
-  `${environment.apiUrl}/api/fights/${fightId}/performAction`;
+export const playerPerformActionUrl = (fightId: number): string => {
+  return `${environment.apiUrl}/api/fights/${fightId}/performAction`;
 };
