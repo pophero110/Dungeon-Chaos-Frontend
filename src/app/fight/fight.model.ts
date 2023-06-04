@@ -1,5 +1,5 @@
 export interface Fight {
-  id: string;
+  id: number;
   fightResult: FightResult;
   opponent: Opponent;
 }
