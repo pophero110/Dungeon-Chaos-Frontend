@@ -15,6 +15,7 @@ import { characterReducer } from './character/state/character.reducer';
 import { FightEffects } from './fight/state/fight.effects';
 import { fightReducer } from './fight/state/fight.reducer';
 import { FightModule } from './fight/fight.module';
+import { PlayerModule } from './player/player.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -35,6 +36,7 @@ import { FightModule } from './fight/fight.module';
     CharacterModule,
     BoardModule,
     FightModule,
+    PlayerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
