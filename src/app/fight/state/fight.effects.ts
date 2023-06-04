@@ -14,8 +14,8 @@ export class FightEffects {
   startFight$ = createEffect(() =>
     this.actions$.pipe(
       ofType(startFight),
-      mergeMap(() =>
-        this.fightService.startFight({ playerId: '1', monsterId: '1' }).pipe(
+      mergeMap(({ playerId, monsterId }) =>
+        this.fightService.startFight({ playerId, monsterId }).pipe(
           map((response) => {
             console.log({ response });
             return startFightSuccess({
