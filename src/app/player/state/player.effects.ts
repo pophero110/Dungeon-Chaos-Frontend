@@ -8,7 +8,7 @@ import {
   createPlayerSuccess,
 } from './player.actions';
 import { PlayerService } from '../service/player.service';
-import { Player } from '../player.model';
+import { PlayerState } from './player.reducer';
 
 @Injectable()
 export class PlayerEffects {
@@ -19,10 +19,10 @@ export class PlayerEffects {
         return this.playerService.createPlayer(action.selectedCharacterId).pipe(
           map((response) => {
             return createPlayerSuccess({
-              player: response as Player,
+              playerState: response as PlayerState,
             });
           }),
-          catchError(() => of(createPlayerError))
+          catchError(() => of(createPlayerError()))
         );
       })
     )

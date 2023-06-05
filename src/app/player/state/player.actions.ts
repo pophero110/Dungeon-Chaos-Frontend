@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { Player } from '../player.model';
+import { PlayerState } from './player.reducer';
 
 export const createPlayerSuccess = createAction(
   '[Player] Create Player Success',
-  props<{ player: Player }>()
+  props<{ playerState: PlayerState }>()
 );
 export const createPlayer = createAction(
   '[Player] Create Player',
@@ -13,7 +13,7 @@ export const createPlayerError = createAction('[Player] Create Player Error');
 
 export const updatePlayer = createAction(
   '[Player] Update Player',
-  props<{ player: Player }>()
+  props<{ playerState: PlayerState }>()
 );
 
 export const playerDie = createAction('[Player] Player Die');
