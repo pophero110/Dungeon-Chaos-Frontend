@@ -20,9 +20,7 @@ export const characterReducer = createReducer(
   })),
   on(selectCharacter, (state, { selectedCharacterId }) => {
     const selectedCharacter =
-      state.characters.find((c) => c.id === +selectedCharacterId) || null;
-    console.log(selectedCharacter, selectedCharacterId);
-
+      state.characters.find((c) => c.id === selectedCharacterId) || null;
     return {
       ...state,
       selectedCharacter: selectedCharacter,
