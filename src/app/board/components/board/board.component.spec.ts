@@ -73,7 +73,8 @@ describe('BoardComponent', () => {
     spyOn(store, 'dispatch');
     const tileType = 'P';
     const position = 1;
-    component.onTileClick(tileType, position);
+    const playerId = 1;
+    component.onTileClick(tileType, position, playerId);
     expect(store.dispatch).toHaveBeenCalledWith(makeMove({ position }));
   });
 
@@ -82,9 +83,10 @@ describe('BoardComponent', () => {
     const tileType = 'M';
     const position = 1;
     const monsterId = 1;
-    component.onTileClick(tileType, position);
+    const playerId = 1;
+    component.onTileClick(tileType, position, playerId);
     expect(store.dispatch).toHaveBeenCalledWith(
-      startFight({ monsterId, opponentPosition: position })
+      startFight({ playerId, monsterId, opponentPosition: position })
     );
   });
 });

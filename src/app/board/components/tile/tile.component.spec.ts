@@ -9,7 +9,7 @@ describe('TileComponent', () => {
   let component: TileComponent;
   let fixture: ComponentFixture<TileComponent>;
   let mockOnTileClick: jasmine.Spy;
-
+  const playerId = 1;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BoardModule, StoreModule.forRoot({})],
@@ -22,6 +22,7 @@ describe('TileComponent', () => {
     mockOnTileClick = jasmine.createSpy('handleTileClick');
     component.onTileClick = mockOnTileClick;
     component.currentPlayerPosition = 2;
+    component.playerId = playerId;
     fixture.detectChanges();
   });
 
@@ -43,7 +44,7 @@ describe('TileComponent', () => {
     component.position = 1;
     const tileElement: HTMLElement = fixture.nativeElement.querySelector('div');
     tileElement.click();
-    expect(mockOnTileClick).toHaveBeenCalledWith('P', 1);
+    expect(mockOnTileClick).toHaveBeenCalledWith('P', 1, playerId);
   });
 
   it('should display the warrior token when the player character name is "Warrior"', () => {
