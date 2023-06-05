@@ -1,22 +1,47 @@
 import { createReducer, on } from '@ngrx/store';
-import { Fight } from '../fight.model';
-import { startFightSuccess } from './fight.actions';
+import { CurrentTurn, FightResult, Opponent } from '../fight.model';
+import {
+  endFight,
+  opponentPerformActionSuccess,
+  playerPerformActionSuccess,
+  startFight,
+  startFightSuccess,
+} from './fight.actions';
+import { logEnd } from 'src/app/utils/log';
+import { Player } from 'src/app/player/player.model';
 
 export interface FightState {
-  fight: Fight | null;
+  id: number;
+  fightResult: FightResult;
+  opponent: Opponent;
+  player: Player;
+  currentTurn: CurrentTurn;
+  opponentPosition: number;
 }
 
-const initialState: FightState = {
-  fight: null,
-};
+const initialState: FightState | object = {};
 
 export const fightReducer = createReducer(
   initialState,
-  on(startFightSuccess, (state, action) => {
-    console.log('start fight success');
-
+  on(startFight, (state, { opponentPosition }) => {
+    return { ...state, opponentPosition };
+  }),
+  on(startFightSuccess, (state, { fightState }) => ({
+    ...state,
+    ...fightState,
+  })),
+  on(playerPerformActionSuccess, (state, { fightState }) => ({
+    ...state,
+    ...fightState,
+  })),
+  on(opponentPerformActionSuccess, (state, { fightState }) => {
     return {
       ...state,
+      ...fightState,
     };
+  }),
+  on(endFight, () => {
+    logEnd('end fight');
+    return initialState;
   })
 );
