@@ -12,3 +12,8 @@ export const makeMove = createAction(
   '[Board] Make Move',
   props<{ position: number }>()
 );
+
+export const removeMonsterToken = createAction(
+  '[Board] Remove Monster Token',
+  props<{ position: number }>()
+);
