@@ -5,7 +5,10 @@ import {
   selectCurrentPlayerPosition,
 } from '../../state/board.selectors';
 import { fetchBoard, makeMove } from '../../state/board.actions';
-import { selectPlayerCharacterName } from 'src/app/player/state/player.selectors';
+import {
+  selectPlayerCharacterName,
+  selectPlayerId,
+} from 'src/app/player/state/player.selectors';
 import { distinctUntilChanged } from 'rxjs';
 import { startFight } from 'src/app/fight/state/fight.actions';
 import { log } from 'src/app/utils/log';
@@ -16,6 +19,7 @@ import { log } from 'src/app/utils/log';
 })
 export class BoardComponent implements OnInit {
   board$ = this.store.select(selectBoard);
+  playerId$ = this.store.select(selectPlayerId);
   currentPlayerPosition$ = this.store
     .select(selectCurrentPlayerPosition)
     .pipe(distinctUntilChanged());
@@ -33,14 +37,16 @@ export class BoardComponent implements OnInit {
     this.store.dispatch(fetchBoard());
   }
 
-  onTileClick(tileType: string, position: number) {
+  onTileClick(tileType: string, position: number, playerId: number | null) {
     log('tile click', { tileType, position });
     if (['P', 'S', 'E'].includes(tileType)) {
       this.store.dispatch(makeMove({ position }));
     } else if (tileType === 'M') {
       //TODO: fetch monsterid dynamically
+      log('tile click - start fight', { playerId });
       this.store.dispatch(
         startFight({
+          playerId: playerId as number,
           monsterId: 1,
           opponentPosition: position,
         })

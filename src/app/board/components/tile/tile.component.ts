@@ -13,7 +13,14 @@ export class TileComponent {
   @Input() position!: number;
   @Input() currentPlayerPosition!: number | null;
   @Input() playerCharacterName!: string | null | undefined;
-  @Input() onTileClick!: (tileType: string, position: number) => void;
+  @Input() onTileClick!: (
+    tileType: string,
+    position: number,
+    playerId: number | null
+  ) => void;
+
+  //TODO: refactor playerId - using server side authentication
+  @Input() playerId!: number | null;
 
   constructor(private store: Store) {}
 }
