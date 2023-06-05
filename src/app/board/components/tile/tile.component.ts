@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-tile',
@@ -6,8 +7,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./tile.component.scss'],
 })
 export class TileComponent {
-  @Input() type!: string;
+  @Input() tileType!: string;
   @Input() position!: number;
   @Input() currentPlayerPosition!: number | null;
   @Input() playerCharacterName!: string | null | undefined;
+  @Input() handleTileClick!: (tileType: string, position: number) => void;
+
+  constructor(private store: Store) {}
 }
