@@ -33,7 +33,7 @@ export class BoardComponent implements OnInit {
     this.store.dispatch(fetchBoard());
   }
 
-  handleTileClick(tileType: string, position: number) {
+  onTileClick(tileType: string, position: number) {
     log('tile click', { tileType, position });
     if (['P', 'S', 'E'].includes(tileType)) {
       this.store.dispatch(makeMove({ position }));
