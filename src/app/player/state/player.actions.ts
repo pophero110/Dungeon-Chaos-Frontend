@@ -11,6 +11,7 @@ export const createPlayer = createAction(
 );
 export const createPlayerError = createAction('[Player] Create Player Error');
 
+// TODO: break down updatePlayer action into smaller actions such as: takeDamage
 export const updatePlayer = createAction(
   '[Player] Update Player',
   props<{ playerState: PlayerState }>()
