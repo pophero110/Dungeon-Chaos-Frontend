@@ -1,14 +1,22 @@
 <div class="board">
-  <div
-    class="board__tile"
-    *ngFor="let tileType of board$ | async | flattenTiles; let position = index"
-    (click)="handleTileClick(tileType, position)"
-  >
-    <app-tile
-      [type]="tileType"
-      [position]="position"
-      [currentPlayerPosition]="currentPlayerPosition$ | async"
-      [playerCharacterName]="playerCharacterName$ | async"
-    ></app-tile>
-  </div>
+  <ng-container *ngIf="currentPlayerPosition$ | async as currentPlayerPosition">
+    <ng-container *ngIf="playerCharacterName$ | async as playerCharacterName">
+      <div
+        class="board__tile"
+        *ngFor="
+          let tileType of board$ | async | flattenTiles;
+          let position = index;
+          trackBy: trackByPositionAndTileType
+        "
+      >
+        <app-tile
+          [tileType]="tileType"
+          [position]="position"
+          [currentPlayerPosition]="currentPlayerPosition"
+          [playerCharacterName]="playerCharacterName"
+          [handleTileClick]="handleTileClick"
+        ></app-tile>
+      </div>
+    </ng-container>
+  </ng-container>
 </div>

@@ -48,7 +48,7 @@ describe('BoardService', () => {
     const req = httpMock.expectOne(expectedUrl);
     console.log(req);
 
-    expect(req.request.method).toBe('POST');
+    expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });
 });

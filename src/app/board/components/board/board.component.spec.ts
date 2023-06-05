@@ -8,9 +8,11 @@ import {
   selectCurrentPlayerPosition,
 } from '../../state/board.selectors';
 import { selectPlayerCharacterName } from 'src/app/player/state/player.selectors';
-import { startFight } from 'src/app/fight/state/fight.actions';
 import { fakeBoard, fakePlayerState } from 'src/app/test/fakeState';
 import { BoardModule } from '../../board.module';
+import { startFight } from 'src/app/fight/state/fight.actions';
+import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 
 describe('BoardComponent', () => {
   let component: BoardComponent;
@@ -50,29 +52,39 @@ describe('BoardComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should render the board tiles correctly', () => {
+    const boardTiles = [['P', 'S', 'E', 'M']];
+    const numberOfTiles = boardTiles.flat().length;
+    component.board$ = of(boardTiles);
+    fixture.detectChanges();
+
+    const tileElements = fixture.debugElement.queryAll(By.css('app-tile'));
+
+    expect(tileElements.length).toBe(numberOfTiles);
+  });
+
   it('should dispatch fetchBoard action on ngOnInit', () => {
     spyOn(store, 'dispatch');
     component.ngOnInit();
     expect(store.dispatch).toHaveBeenCalledWith(fetchBoard());
   });
 
-  it('should dispatch makeMove action when tile is clicked and it is a valid move', () => {
+  it('should dispatch makeMove action when tileType is P', () => {
     spyOn(store, 'dispatch');
-    const tile = 'P';
+    const tileType = 'P';
     const position = 1;
-    const currentPlayerPosition = 0;
-    component.handleTileClick(tile, position, currentPlayerPosition);
+    component.handleTileClick(tileType, position);
     expect(store.dispatch).toHaveBeenCalledWith(makeMove({ position }));
   });
 
-  it('should dispatch startFight action when monster tile is clicked', () => {
+  it('should dispatch startFight action when tileType is M', () => {
     spyOn(store, 'dispatch');
-    const tile = 'M';
+    const tileType = 'M';
     const position = 1;
-    const currentPlayerPosition = 0;
-    component.handleTileClick(tile, position, currentPlayerPosition);
+    const monsterId = 1;
+    component.handleTileClick(tileType, position);
     expect(store.dispatch).toHaveBeenCalledWith(
-      startFight({ monsterId: 1, opponentPosition: position })
+      startFight({ monsterId, opponentPosition: position })
     );
   });
 });
