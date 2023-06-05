@@ -1,3 +1,4 @@
+import { Character, CharacterName } from '../character/character.model';
 import { FightResult } from '../fight/fight.model';
 import { CurrentTurn } from '../fight/fight.model';
 import { Opponent } from '../fight/fight.model';
@@ -22,13 +23,13 @@ export const fakeBoard: string[][] = [
 
 export const fakePlayerState: PlayerState = {
   id: 1,
-  name: 'Warrior',
+  name: CharacterName.Warrior,
   health: 90,
   attack: 15,
   defense: 20,
   speed: 30,
   goldCoin: 0,
-  created: true,
+  isCreated: true,
 };
 
 export const fakeOpponent: Opponent = {
@@ -40,9 +41,18 @@ export const fakeOpponent: Opponent = {
   speed: 12,
 };
 
+export const fakeCharacter: Character = {
+  id: 1,
+  name: CharacterName.Warrior,
+  health: 90,
+  attack: 15,
+  defense: 20,
+  speed: 30,
+};
+
 const fakePlayer: Player = {
   id: 1,
-  name: 'Warrior',
+  name: CharacterName.Warrior,
   health: 90,
   attack: 15,
   defense: 20,
