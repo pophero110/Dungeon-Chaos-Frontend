@@ -13,7 +13,7 @@ export const selectPlayerId = createSelector(
   (state) => state.id
 );
 
-export const selectPlayerStateCreated = createSelector(
+export const selectIsPlayerCreated = createSelector(
   selectPlayerState,
-  (state) => state.created
+  (state) => state.isCreated
 );

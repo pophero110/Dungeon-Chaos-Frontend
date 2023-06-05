@@ -15,8 +15,8 @@ export class PlayerEffects {
   createPlayer$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createPlayer),
-      mergeMap((action) => {
-        return this.playerService.createPlayer(action.selectedCharacterId).pipe(
+      mergeMap(({ selectedCharacterId }) => {
+        return this.playerService.createPlayer(selectedCharacterId).pipe(
           map((response) => {
             return createPlayerSuccess({
               playerState: response as PlayerState,

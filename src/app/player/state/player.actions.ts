@@ -7,7 +7,7 @@ export const createPlayerSuccess = createAction(
 );
 export const createPlayer = createAction(
   '[Player] Create Player',
-  props<{ selectedCharacterId: string }>()
+  props<{ selectedCharacterId: number }>()
 );
 export const createPlayerError = createAction('[Player] Create Player Error');
 

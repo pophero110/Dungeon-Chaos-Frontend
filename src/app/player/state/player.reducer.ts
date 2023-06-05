@@ -14,11 +14,11 @@ export interface PlayerState {
   defense: number;
   speed: number;
   goldCoin: number;
-  created: boolean;
+  isCreated: boolean;
 }
 
 export const initialState: PlayerState | object = {
-  created: false,
+  isCreated: false,
 };
 
 export const playerReducer = createReducer(
@@ -26,7 +26,7 @@ export const playerReducer = createReducer(
   on(createPlayerSuccess, (state, { playerState }) => ({
     ...state,
     ...playerState,
-    created: true,
+    isCreated: true,
   })),
   on(updatePlayer, (state, { playerState }) => {
     return {
