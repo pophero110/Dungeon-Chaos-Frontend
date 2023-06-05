@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { selectSelectedCharacter } from '../../state/character.selectors';
+import { Component, Input } from '@angular/core';
+import { Character, CharacterName } from '../../character.model';
 
 @Component({
   selector: 'app-character-panel',
@@ -8,7 +7,6 @@ import { selectSelectedCharacter } from '../../state/character.selectors';
   styleUrls: ['./character-panel.component.scss'],
 })
 export class CharacterPanelComponent {
-  selectedCharacter = this.store.select(selectSelectedCharacter);
-
-  constructor(private store: Store) {}
+  characterName = CharacterName;
+  @Input() selectedCharacter!: Character | null;
 }
