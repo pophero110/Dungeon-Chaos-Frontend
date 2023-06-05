@@ -1,10 +1,6 @@
-import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import {
-  selectIsPlayerCreated,
-  selectPlayerState,
-} from '../../state/player.selectors';
+import { Component, Input } from '@angular/core';
 import { CharacterName } from 'src/app/character/character.model';
+import { Player } from '../../player.model';
 
 //TODO: separate state and presentation by creating smart and dumb component
 @Component({
@@ -14,7 +10,5 @@ import { CharacterName } from 'src/app/character/character.model';
 })
 export class PlayerPanelComponent {
   characterName = CharacterName;
-  player$ = this.store.select(selectPlayerState);
-  isPlayerCreated$ = this.store.select(selectIsPlayerCreated);
-  constructor(private store: Store) {}
+  @Input() player!: Player | null;
 }

@@ -1,33 +1,31 @@
-<ng-container *ngIf="isPlayerCreated$ | async">
-  <div class="playerPanel" *ngIf="player$ | async as player">
-    <div class="playerPanel__token">
-      <app-warrior-token
-        *ngIf="player?.name === characterName.Warrior"
-      ></app-warrior-token>
-      <app-rogue-token
-        *ngIf="player?.name === characterName.Rogue"
-      ></app-rogue-token>
-    </div>
-
-    <ul>
-      <li>
-        <p>Name: {{ player.name }}</p>
-      </li>
-      <li>
-        <p>Health: {{ player.health }}</p>
-      </li>
-      <li>
-        <p>Attack: {{ player.attack }}</p>
-      </li>
-      <li>
-        <p>Defense: {{ player.defense }}</p>
-      </li>
-      <li>
-        <p>Speed: {{ player.speed }}</p>
-      </li>
-      <li>
-        <p>Gold Coin: {{ player.goldCoin }}</p>
-      </li>
-    </ul>
+<div class="playerPanel">
+  <div class="playerPanel__token">
+    <app-warrior-token
+      *ngIf="player?.name === characterName.Warrior"
+    ></app-warrior-token>
+    <app-rogue-token
+      *ngIf="player?.name === characterName.Rogue"
+    ></app-rogue-token>
   </div>
-</ng-container>
+
+  <ul>
+    <li>
+      <p>Name: {{ player?.name }}</p>
+    </li>
+    <li>
+      <p>Health: {{ player?.health }}</p>
+    </li>
+    <li>
+      <p>Attack: {{ player?.attack }}</p>
+    </li>
+    <li>
+      <p>Defense: {{ player?.defense }}</p>
+    </li>
+    <li>
+      <p>Speed: {{ player?.speed }}</p>
+    </li>
+    <li>
+      <p>Gold Coin: {{ player?.goldCoin }}</p>
+    </li>
+  </ul>
+</div>
