@@ -37,7 +37,7 @@ describe('PlayerEffects', () => {
   });
 
   it('should dispatch createPlayerSuccess action on successful player creation', () => {
-    const selectedCharacterId = '123';
+    const selectedCharacterId = 123;
 
     playerService.createPlayer.and.returnValue(of(fakePlayerState));
 
@@ -51,7 +51,7 @@ describe('PlayerEffects', () => {
   });
 
   it('should dispatch createPlayerError action on player creation failure', () => {
-    const selectedCharacterId = '123';
+    const selectedCharacterId = 123;
     const error = new Error('Player creation failed');
 
     playerService.createPlayer.and.returnValue(throwError(() => error));

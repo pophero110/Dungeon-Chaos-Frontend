@@ -26,7 +26,7 @@ describe('PlayerService', () => {
   });
 
   it('should send a POST request to create player', () => {
-    const selectedCharacterId = '123';
+    const selectedCharacterId = 1;
     const dummyResponse = fakePlayerState;
 
     service.createPlayer(selectedCharacterId).subscribe((response) => {

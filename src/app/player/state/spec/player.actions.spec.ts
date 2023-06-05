@@ -34,7 +34,7 @@ describe('Player Actions', () => {
 
   describe('createPlayer', () => {
     it('should create the action with the provided selectedCharacterId', () => {
-      const selectedCharacterId = '123';
+      const selectedCharacterId = 1;
       const action = createPlayer({ selectedCharacterId });
 
       expect(action.type).toBe('[Player] Create Player');

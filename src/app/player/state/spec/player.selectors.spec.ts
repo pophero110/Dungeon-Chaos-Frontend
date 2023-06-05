@@ -1,46 +1,31 @@
-import { PlayerState } from '../player.reducer';
+import { fakePlayerState } from 'src/app/test/fakeState';
 import {
   selectPlayerState,
   selectPlayerCharacterName,
   selectPlayerId,
-  selectPlayerStateCreated,
+  selectIsPlayerCreated,
 } from '../player.selectors';
 
 describe('Player Selectors', () => {
-  const playerState: PlayerState = {
-    id: 1,
-    name: 'John',
-    health: 100,
-    attack: 20,
-    defense: 10,
-    speed: 5,
-    goldCoin: 50,
-    created: true,
-  };
-
-  const appState = {
-    player: playerState,
-  };
-
   it('should select the player state', () => {
-    const selectedPlayerState = selectPlayerState.projector(appState);
-    expect(selectedPlayerState).toEqual(playerState);
+    const selectedPlayerState = selectPlayerState.projector(fakePlayerState);
+    expect(selectedPlayerState).toEqual(fakePlayerState);
   });
 
   it('should select the player character name', () => {
     const selectedCharacterName =
-      selectPlayerCharacterName.projector(playerState);
-    expect(selectedCharacterName).toBe('John');
+      selectPlayerCharacterName.projector(fakePlayerState);
+    expect(selectedCharacterName).toBe('Warrior');
   });
 
   it('should select the player ID', () => {
-    const selectedPlayerId = selectPlayerId.projector(playerState);
+    const selectedPlayerId = selectPlayerId.projector(fakePlayerState);
     expect(selectedPlayerId).toBe(1);
   });
 
   it('should select the player state created status', () => {
     const selectedPlayerStateCreated =
-      selectPlayerStateCreated.projector(playerState);
+      selectIsPlayerCreated.projector(fakePlayerState);
     expect(selectedPlayerStateCreated).toBe(true);
   });
 });
