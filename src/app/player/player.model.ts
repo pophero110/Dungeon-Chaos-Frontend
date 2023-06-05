@@ -5,4 +5,5 @@ export interface Player {
   attack: number;
   defense: number;
   speed: number;
+  goldCoin: number;
 }
