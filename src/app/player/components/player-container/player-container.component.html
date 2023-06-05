@@ -1,0 +1,3 @@
+<ng-container *ngIf="isPlayerCreated$ | async">
+  <app-player-panel [player]="player$ | async"></app-player-panel>
+</ng-container>
