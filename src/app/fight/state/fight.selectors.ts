@@ -18,11 +18,8 @@ export const selectFightResult = createSelector(
 export const selectOpponentTurn = createSelector(
   selectFightState,
   (state: FightState) => {
-    if (state.currentTurn) {
-      log('current turn:', state.currentTurn);
-      return state.currentTurn === CurrentTurn.OPPONENT;
-    }
-    return;
+    log('current turn:', state.currentTurn);
+    return state.currentTurn === CurrentTurn.OPPONENT;
   }
 );
 
