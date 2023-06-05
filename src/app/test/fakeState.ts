@@ -31,9 +31,6 @@ export const fakePlayerState: PlayerState = {
   created: true,
 };
 
-export const fakeCurrentPlayerPosition = 1;
-export const fakePlayerCharacterName = 'Warrior';
-
 export const fakeOpponent: Opponent = {
   id: 1,
   name: 'Goblin',
