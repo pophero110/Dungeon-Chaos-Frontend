@@ -10,3 +10,10 @@ export const createPlayer = createAction(
   props<{ selectedCharacterId: string }>()
 );
 export const createPlayerError = createAction('[Player] Create Player Error');
+
+export const updatePlayer = createAction(
+  '[Player] Update Player',
+  props<{ player: Player }>()
+);
+
+export const playerDie = createAction('[Player] Player Die');
