@@ -60,7 +60,7 @@ const fakePlayer: Player = {
   goldCoin: 0,
 };
 
-export const fakeFight: FightState = {
+export const fakeFightState: FightState = {
   id: 1,
   fightResult: FightResult.ONGOING,
   opponent: fakeOpponent,
