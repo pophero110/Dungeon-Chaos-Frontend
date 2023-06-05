@@ -5,28 +5,57 @@
   backdrop-filter: blur(10px);
   top: 0;
   left: 0;
-  padding: 15% 20%;
+  padding: 20%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
+  &__topSection {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__opponent {
-    width: 150px;
-    height: 150px;
+    display: flex;
+    background-color: antiquewhite;
+    padding: 1rem;
+    &__token {
+      margin-right: 10px;
+      width: 150px;
+      height: 150px;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      list-style: none;
+    }
+  }
+
+  &__player {
+    background-color: antiquewhite;
+    padding: 1rem;
   }
 
   &__playerActions {
     display: flex;
     justify-content: space-between;
-    & div {
+    & button {
       padding: 30px 0;
       width: 100px;
       text-align: center;
-      background-color: white;
+      background-color: black;
+      color: white;
+      border: 1px solid white;
       cursor: pointer;
       &:hover {
         transform: scale(1.1);
+      }
+      &:disabled {
+        display: none;
       }
     }
     & :not(:last-child) {

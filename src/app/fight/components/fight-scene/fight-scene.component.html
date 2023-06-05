@@ -1,10 +1,35 @@
-<div class="fightScene">
-  <div class="fightScene__opponent">
-    <app-golblin-token></app-golblin-token>
+<div class="fightScene" *ngIf="opponent$ | async as opponent">
+  <div class="fightScene__topSection">
+    <div class="fightScene__opponent">
+      <div class="fightScene__opponent__token">
+        <app-golblin-token></app-golblin-token>
+      </div>
+      <ul>
+        <li>
+          <p>Name: {{ opponent.name }}</p>
+        </li>
+        <li>
+          <p>Health: {{ opponent.health }}</p>
+        </li>
+        <li>
+          <p>Attack: {{ opponent.attack }}</p>
+        </li>
+        <li>
+          <p>Defense: {{ opponent.defense }}</p>
+        </li>
+        <li>
+          <p>Speed: {{ opponent.speed }}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="fightScene__player">
+      <app-player-panel></app-player-panel>
+    </div>
   </div>
-  <div class="fightScene__playerActions">
-    <div>Attack</div>
-    <div>Defend</div>
-    <div>Flee</div>
+
+  <div class="fightScene__playerActions" *ngIf="!(opponentTurn$ | async)">
+    <button (click)="handlePerformAction(actionType.ATTACK)">Attack</button>
+    <button (click)="handlePerformAction(actionType.DEFEND)">Defend</button>
+    <button (click)="handlePerformAction(actionType.FLEE)">Flee</button>
   </div>
 </div>
