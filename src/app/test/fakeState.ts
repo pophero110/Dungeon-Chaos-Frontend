@@ -1,8 +1,9 @@
 import { FightResult } from '../fight/fight.model';
 import { CurrentTurn } from '../fight/fight.model';
 import { Opponent } from '../fight/fight.model';
-import { Fight } from '../fight/fight.model';
+import { FightState } from '../fight/state/fight.reducer';
 import { Player } from '../player/player.model';
+import { PlayerState } from '../player/state/player.reducer';
 
 export const fakeBoard: string[][] = [
   ['M', 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'M', 'W', 'P', 'W'],
@@ -19,7 +20,7 @@ export const fakeBoard: string[][] = [
   ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'E', 'W'],
 ];
 
-export const fakePlayer: Player = {
+export const fakePlayerState: PlayerState = {
   id: 1,
   name: 'Warrior',
   health: 90,
@@ -27,7 +28,12 @@ export const fakePlayer: Player = {
   defense: 20,
   speed: 30,
   goldCoin: 0,
+  created: true,
 };
+
+export const fakeCurrentPlayerPosition = 1;
+export const fakePlayerCharacterName = 'Warrior';
+
 export const fakeOpponent: Opponent = {
   id: 1,
   name: 'Goblin',
@@ -36,12 +42,22 @@ export const fakeOpponent: Opponent = {
   defense: 12,
   speed: 12,
 };
-export const fakeCurrentPlayerPosition = 1;
-export const fakePlayerCharacterName = 'Warrior';
-export const fakeFight: Fight = {
+
+const fakePlayer: Player = {
+  id: 1,
+  name: 'Warrior',
+  health: 90,
+  attack: 15,
+  defense: 20,
+  speed: 30,
+  goldCoin: 0,
+};
+
+export const fakeFight: FightState = {
   id: 1,
   fightResult: FightResult.ONGOING,
   opponent: fakeOpponent,
   player: fakePlayer,
   currentTurn: CurrentTurn.PLAYER,
+  opponentPosition: 2,
 };
