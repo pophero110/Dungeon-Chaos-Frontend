@@ -13,3 +13,11 @@ export const isValidMove = (
   if (currentPosition - targetPosition === -12) return true;
   return false;
 };
+
+export const convertToMatrixIndex = (
+  index: number
+): { row: number; col: number } => {
+  const row = Math.floor(index / 12);
+  const col = index % 12;
+  return { row, col };
+};
