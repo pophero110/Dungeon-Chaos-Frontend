@@ -1,7 +1,6 @@
 .playerPanel {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
 
   ul {
     display: flex;
@@ -13,5 +12,7 @@
   &__token {
     height: 150px;
     width: 150px;
+    margin-right: 10px;
+    color: white;
   }
 }
