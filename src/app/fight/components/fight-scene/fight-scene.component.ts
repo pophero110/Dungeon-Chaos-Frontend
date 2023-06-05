@@ -7,6 +7,7 @@ import {
   selectOpponentTurn,
 } from '../../state/fight.selectors';
 import { log } from 'src/app/utils/log';
+import { selectPlayerState } from 'src/app/player/state/player.selectors';
 
 @Component({
   selector: 'app-fight-scene',
@@ -17,6 +18,7 @@ export class FightSceneComponent implements OnDestroy {
   actionType = ActionType;
   opponent$ = this.store.select(selectFightOpponent);
   opponentTurn$ = this.store.select(selectOpponentTurn);
+  player$ = this.store.select(selectPlayerState);
   constructor(private store: Store) {}
 
   ngOnDestroy(): void {
