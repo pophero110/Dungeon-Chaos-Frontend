@@ -18,6 +18,8 @@ export interface FightState {
   currentTurn: CurrentTurn;
   opponentPosition: number;
   isFighting: boolean;
+  opponentActionType: string;
+  playerActionType: string;
 }
 
 const initialState: FightState | object = {};

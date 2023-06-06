@@ -63,8 +63,8 @@ export class FightEffects {
       mergeMap(() =>
         this.fightService.opponentPerformAction(this.fightId).pipe(
           mergeMap((response) => {
-            log('opponent perform action');
             const fightState = response as FightState;
+            log('opponent perform action', fightState.opponentActionType);
             if (fightState.fightResult === FightResult.VICTORY_OPPONENT) {
               return concat(of(playerLoseFight()));
             } else {
@@ -93,10 +93,13 @@ export class FightEffects {
       mergeMap(({ actionType }) =>
         this.fightService.playerPerformAction(this.fightId, actionType).pipe(
           mergeMap((response) => {
-            log('player perform action');
+            log('player perform action', actionType);
             const fightState = response as FightState;
+            //TODO: refactor by creating separate effect per actionType?
             if (fightState.fightResult === FightResult.VICTORY_PLAYER) {
               return concat(of(playerWinFight()));
+            } else if (fightState.fightResult === FightResult.FLEE_PLAYER) {
+              return concat(of(endFight()));
             } else {
               const successAction = playerPerformActionSuccess({
                 fightState: { ...fightState },

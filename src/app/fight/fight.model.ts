@@ -11,7 +11,8 @@ export interface Fight {
 export enum FightResult {
   VICTORY_PLAYER = 'VICTORY_PLAYER',
   VICTORY_OPPONENT = 'VICTORY_OPPONENT',
-  FLEE = 'FLEE',
+  FLEE_PLAYER = 'FLEE_PLAYER',
+  FLEE_MONSTER = 'FLEE_MONSTER',
   ONGOING = 'ONGOING',
 }
 
