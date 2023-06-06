@@ -22,7 +22,7 @@ export class CharacterEffects {
               characters: response as Character[],
             });
           }),
-          catchError(() => of(fetchCharacterError))
+          catchError(() => of(fetchCharacterError()))
         )
       )
     )

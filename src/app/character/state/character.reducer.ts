@@ -1,6 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { Character } from 'src/app/character/character.model';
 import { fetchCharacterSuccess, selectCharacter } from './character.actions';
+import { log } from 'src/app/utils/log';
+import { findCharacterById } from '../character.utils';
 
 export interface CharacterState {
   characters: Character[];
@@ -19,13 +21,17 @@ export const characterReducer = createReducer(
     characters,
   })),
   on(selectCharacter, (state, { selectedCharacterId }) => {
-    const selectedCharacter =
-      state.characters.find((c) => c.id === +selectedCharacterId) || null;
-    console.log(selectedCharacter, selectedCharacterId);
-
-    return {
-      ...state,
-      selectedCharacter: selectedCharacter,
-    };
+    const selectedCharacter = findCharacterById(
+      state.characters,
+      selectedCharacterId
+    );
+    log('selected character', selectedCharacter, state.characters);
+    if (selectedCharacter) {
+      return {
+        ...state,
+        selectedCharacter: selectedCharacter,
+      };
+    }
+    return { ...state };
   })
 );

@@ -9,10 +9,7 @@
       required
     >
       <option value="" disabled>Select a character</option>
-      <option
-        *ngFor="let character of characters | async"
-        [value]="character.id"
-      >
+      <option *ngFor="let character of characters" [value]="character.id">
         {{ character.name }}
       </option>
     </select>

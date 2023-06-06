@@ -6,3 +6,8 @@ export interface Character {
   defense: number;
   speed: number;
 }
+
+export enum CharacterName {
+  Warrior = 'Warrior',
+  Rogue = 'Rogue',
+}

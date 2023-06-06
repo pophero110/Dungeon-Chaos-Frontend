@@ -28,7 +28,7 @@ export class BoardEffects {
               currentPlayerPosition,
             });
           }),
-          catchError(() => of(fetchBoardError))
+          catchError(() => of(fetchBoardError()))
         )
       )
     )

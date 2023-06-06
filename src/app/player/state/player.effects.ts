@@ -8,21 +8,21 @@ import {
   createPlayerSuccess,
 } from './player.actions';
 import { PlayerService } from '../service/player.service';
-import { Player } from '../player.model';
+import { PlayerState } from './player.reducer';
 
 @Injectable()
 export class PlayerEffects {
   createPlayer$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createPlayer),
-      mergeMap((action) => {
-        return this.playerService.createPlayer(action.selectedCharacterId).pipe(
+      mergeMap(({ selectedCharacterId }) => {
+        return this.playerService.createPlayer(selectedCharacterId).pipe(
           map((response) => {
             return createPlayerSuccess({
-              player: response as Player,
+              playerState: response as PlayerState,
             });
           }),
-          catchError(() => of(createPlayerError))
+          catchError(() => of(createPlayerError()))
         );
       })
     )

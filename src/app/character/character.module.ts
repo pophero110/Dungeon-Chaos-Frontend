@@ -4,10 +4,15 @@ import { CharacterFormComponent } from './components/character-form/character-fo
 import { FormsModule } from '@angular/forms';
 import { CharacterPanelComponent } from './components/character-panel/character-panel.component';
 import { TokenModule } from '../token/token.module';
+import { CharacterContainerComponent } from './components/character-container/character-container.component';
 
 @NgModule({
-  declarations: [CharacterFormComponent, CharacterPanelComponent],
+  declarations: [
+    CharacterFormComponent,
+    CharacterPanelComponent,
+    CharacterContainerComponent,
+  ],
   imports: [CommonModule, FormsModule, TokenModule],
-  exports: [CharacterFormComponent, CharacterPanelComponent],
+  exports: [CharacterContainerComponent],
 })
 export class CharacterModule {}

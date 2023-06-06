@@ -1,19 +1,42 @@
 import { createReducer, on } from '@ngrx/store';
-import { Player } from '../player.model';
-import { createPlayerSuccess } from './player.actions';
+import {
+  createPlayerError,
+  createPlayerSuccess,
+  playerDie,
+  updatePlayer,
+} from './player.actions';
 
 export interface PlayerState {
-  player: Player | null;
+  id: number;
+  name: string;
+  health: number;
+  attack: number;
+  defense: number;
+  speed: number;
+  goldCoin: number;
+  isCreated: boolean;
 }
 
-export const initialState: PlayerState = {
-  player: null,
+export const initialState: PlayerState | object = {
+  isCreated: false,
 };
 
 export const playerReducer = createReducer(
   initialState,
-  on(createPlayerSuccess, (state, { player }) => ({
+  on(createPlayerSuccess, (state, { playerState }) => ({
     ...state,
-    player,
-  }))
+    ...playerState,
+    isCreated: true,
+  })),
+  on(updatePlayer, (state, { playerState }) => {
+    return {
+      ...state,
+      ...playerState,
+    };
+  }),
+  on(playerDie, () => initialState),
+  on(createPlayerError, () => {
+    new Error('Player creation failed');
+    return initialState;
+  })
 );

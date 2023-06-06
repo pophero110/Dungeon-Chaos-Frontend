@@ -1,0 +1,33 @@
+<div class="fightScene">
+  <div
+    class="fightScene__opponent"
+    [ngClass]="{ fightScene__turnIndicator: isOpponentTurn }"
+  >
+    <div class="fightScene__opponent__token">
+      <app-golblin-token></app-golblin-token>
+    </div>
+    <ul>
+      <li>
+        <p>Name: {{ opponent?.name }}</p>
+      </li>
+      <li>
+        <p>Health: {{ opponent?.health }}</p>
+      </li>
+      <li>
+        <p>Attack: {{ opponent?.attack }}</p>
+      </li>
+      <li>
+        <p>Defense: {{ opponent?.defense }}</p>
+      </li>
+      <li>
+        <p>Speed: {{ opponent?.speed }}</p>
+      </li>
+    </ul>
+  </div>
+  <div
+    class="fightScene__player"
+    [ngClass]="{ fightScene__turnIndicator: !isOpponentTurn }"
+  >
+    <app-player-panel [player]="player"></app-player-panel>
+  </div>
+</div>

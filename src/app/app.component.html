@@ -1,7 +1,12 @@
 <main>
-  <app-board></app-board>
-  <div class="character">
-    <app-character-panel></app-character-panel>
-    <app-character-form></app-character-form>
-  </div>
+  <section style="position: relative">
+    <app-board></app-board>
+  </section>
+
+  <section style="height: 644px; padding: 95px 20px">
+    <app-character-container></app-character-container>
+    <app-player-container></app-player-container>
+  </section>
+
+  <app-fight-container></app-fight-container>
 </main>

@@ -12,5 +12,5 @@ export const fetchCharacterError = createAction(
 
 export const selectCharacter = createAction(
   '[Character] Select Character',
-  props<{ selectedCharacterId: string }>()
+  props<{ selectedCharacterId: number }>()
 );

@@ -8,7 +8,7 @@ import { createPlayerUrl } from 'src/app/utils/api/playerApi';
 export class PlayerService {
   constructor(private http: HttpClient) {}
 
-  public createPlayer(selectedCharacterId: string) {
+  public createPlayer(selectedCharacterId: number) {
     return this.http.post(createPlayerUrl, { selectedCharacterId });
   }
 }

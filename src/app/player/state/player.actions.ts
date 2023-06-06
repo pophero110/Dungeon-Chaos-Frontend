@@ -1,12 +1,20 @@
 import { createAction, props } from '@ngrx/store';
-import { Player } from '../player.model';
+import { PlayerState } from './player.reducer';
 
 export const createPlayerSuccess = createAction(
   '[Player] Create Player Success',
-  props<{ player: Player }>()
+  props<{ playerState: PlayerState }>()
 );
 export const createPlayer = createAction(
   '[Player] Create Player',
-  props<{ selectedCharacterId: string }>()
+  props<{ selectedCharacterId: number }>()
 );
 export const createPlayerError = createAction('[Player] Create Player Error');
+
+// TODO: break down updatePlayer action into smaller actions such as: takeDamage
+export const updatePlayer = createAction(
+  '[Player] Update Player',
+  props<{ playerState: PlayerState }>()
+);
+
+export const playerDie = createAction('[Player] Player Die');

@@ -1,0 +1,31 @@
+.fightScene {
+  width: 650px;
+  display: flex;
+  justify-content: space-between;
+  &__opponent {
+    display: flex;
+    background-color: lightgray;
+    padding: 1rem;
+    &__token {
+      margin-right: 10px;
+      width: 150px;
+      height: 150px;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      list-style: none;
+    }
+  }
+
+  &__player {
+    background-color: lightgray;
+    padding: 1rem;
+  }
+
+  &__turnIndicator {
+    outline: 4px dashed black;
+  }
+}

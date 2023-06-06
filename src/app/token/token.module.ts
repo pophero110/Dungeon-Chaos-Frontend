@@ -6,6 +6,7 @@ import { WarriorTokenComponent } from './character/warrior-token/warrior-token.c
 import { RogueTokenComponent } from './character/rogue-token/rogue-token.component';
 import { PortalTokenComponent } from './board/portal-token/portal-token.component';
 import { EntryTokenComponent } from './board/entry-token/entry-token.component';
+import { GolblinTokenComponent } from './board/golblin-token/golblin-token.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { EntryTokenComponent } from './board/entry-token/entry-token.component';
     RogueTokenComponent,
     PortalTokenComponent,
     EntryTokenComponent,
+    GolblinTokenComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -24,6 +26,7 @@ import { EntryTokenComponent } from './board/entry-token/entry-token.component';
     RogueTokenComponent,
     PortalTokenComponent,
     EntryTokenComponent,
+    GolblinTokenComponent,
   ],
 })
 export class TokenModule {}
