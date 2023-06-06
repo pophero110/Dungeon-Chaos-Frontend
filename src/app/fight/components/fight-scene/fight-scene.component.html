@@ -1,4 +1,4 @@
-<div class="fightScene" *ngIf="opponent$ | async as opponent">
+<div class="fightScene">
   <div class="fightScene__topSection">
     <div class="fightScene__opponent">
       <div class="fightScene__opponent__token">
@@ -6,30 +6,30 @@
       </div>
       <ul>
         <li>
-          <p>Name: {{ opponent.name }}</p>
+          <p>Name: {{ opponent?.name }}</p>
         </li>
         <li>
-          <p>Health: {{ opponent.health }}</p>
+          <p>Health: {{ opponent?.health }}</p>
         </li>
         <li>
-          <p>Attack: {{ opponent.attack }}</p>
+          <p>Attack: {{ opponent?.attack }}</p>
         </li>
         <li>
-          <p>Defense: {{ opponent.defense }}</p>
+          <p>Defense: {{ opponent?.defense }}</p>
         </li>
         <li>
-          <p>Speed: {{ opponent.speed }}</p>
+          <p>Speed: {{ opponent?.speed }}</p>
         </li>
       </ul>
     </div>
     <div class="fightScene__player">
-      <app-player-panel [player]="player$ | async"></app-player-panel>
+      <app-player-panel [player]="player"></app-player-panel>
     </div>
   </div>
 
-  <div class="fightScene__playerActions" *ngIf="!(opponentTurn$ | async)">
-    <button (click)="handlePerformAction(actionType.ATTACK)">Attack</button>
-    <button (click)="handlePerformAction(actionType.DEFEND)">Defend</button>
-    <button (click)="handlePerformAction(actionType.FLEE)">Flee</button>
+  <div class="fightScene__playerActions" *ngIf="!opponentTurn">
+    <button (click)="onPerformAction(actionType.ATTACK)">Attack</button>
+    <button (click)="onPerformAction(actionType.DEFEND)">Defend</button>
+    <button (click)="onPerformAction(actionType.FLEE)">Flee</button>
   </div>
 </div>

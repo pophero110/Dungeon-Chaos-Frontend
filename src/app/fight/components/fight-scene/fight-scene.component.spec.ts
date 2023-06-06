@@ -1,46 +1,68 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FightSceneComponent } from './fight-scene.component';
-import { Store, StoreModule } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { playerPerformAction } from '../../state/fight.actions';
-import { ActionType } from '../../fight.model';
+import { StoreModule } from '@ngrx/store';
 import { FightModule } from '../../fight.module';
+import { fakeOpponent } from 'src/app/test/fakeState';
+import { By } from '@angular/platform-browser';
 
 describe('FightSceneComponent', () => {
   let component: FightSceneComponent;
   let fixture: ComponentFixture<FightSceneComponent>;
-  let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [StoreModule.forRoot({}), FightModule],
-      providers: [provideMockStore()],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FightSceneComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store) as MockStore;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch playerPerformAction', () => {
-    spyOn(store, 'dispatch').and.callThrough();
-    const actionType = ActionType.ATTACK;
-    component.handlePerformAction(actionType);
-    expect(store.dispatch).toHaveBeenCalledWith(
-      playerPerformAction({ actionType })
+  it('should render opponent section with opponent token and details', () => {
+    component.opponent = fakeOpponent;
+    fixture.detectChanges();
+
+    const opponentTokenElement = fixture.debugElement.query(
+      By.css('.fightScene__opponent__token app-golblin-token')
+    );
+    const opponentNameElement = fixture.debugElement.query(
+      By.css('.fightScene__opponent ul li:nth-child(1) p')
+    );
+    const opponentHealthElement = fixture.debugElement.query(
+      By.css('.fightScene__opponent ul li:nth-child(2) p')
+    );
+
+    expect(opponentTokenElement).toBeTruthy();
+    expect(opponentHealthElement.nativeElement.textContent).toContain(
+      fakeOpponent.health
+    );
+    expect(opponentNameElement.nativeElement.textContent).toContain(
+      fakeOpponent.name
     );
   });
 
-  // it('should set opponentTurn to true', () => {
-  //   component.handlePerformAction(ActionType.ATTACK);
-  //   expect(component.opponentTurn).toBeTrue();
-  // });
+  it('should render player panel with player data', () => {
+    const playerPanelElement = fixture.debugElement.query(
+      By.css('.fightScene__player app-player-panel')
+    );
+    expect(playerPanelElement).toBeTruthy();
+  });
+
+  it('should render player actions when it is not opponent turn', () => {
+    component.opponentTurn = false;
+    fixture.detectChanges();
+
+    const playerActionsElement = fixture.debugElement.query(
+      By.css('.fightScene__playerActions')
+    );
+    expect(playerActionsElement).toBeTruthy();
+  });
 
   afterEach(() => {
     fixture.destroy();
