@@ -1,0 +1,5 @@
+<div class="playerActions" *ngIf="!isOpponentTurn">
+  <button (click)="onPerformAction(actionType.ATTACK)">Attack</button>
+  <button (click)="onPerformAction(actionType.DEFEND)">Defend</button>
+  <button (click)="onPerformAction(actionType.FLEE)">Flee</button>
+</div>
