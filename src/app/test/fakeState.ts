@@ -67,4 +67,5 @@ export const fakeFightState: FightState = {
   player: fakePlayer,
   currentTurn: CurrentTurn.PLAYER,
   opponentPosition: 2,
+  isFighting: true,
 };

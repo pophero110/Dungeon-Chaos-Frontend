@@ -17,6 +17,7 @@ export interface FightState {
   player: Player;
   currentTurn: CurrentTurn;
   opponentPosition: number;
+  isFighting: boolean;
 }
 
 const initialState: FightState | object = {};
@@ -24,7 +25,7 @@ const initialState: FightState | object = {};
 export const fightReducer = createReducer(
   initialState,
   on(startFight, (state, { opponentPosition }) => {
-    return { ...state, opponentPosition };
+    return { ...state, opponentPosition, isFighting: true };
   }),
   on(startFightSuccess, (state, { fightState }) => ({
     ...state,

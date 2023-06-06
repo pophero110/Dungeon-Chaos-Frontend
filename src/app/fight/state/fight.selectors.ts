@@ -23,7 +23,7 @@ export const selectOpponentTurn = createSelector(
   }
 );
 
-export const selectFightId = createSelector(
+export const selectIsFighting = createSelector(
   selectFightState,
-  (state) => state.id
+  (state: FightState) => state.isFighting
 );
