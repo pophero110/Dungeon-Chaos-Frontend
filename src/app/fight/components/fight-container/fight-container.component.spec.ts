@@ -49,9 +49,9 @@ describe('FightContainerComponent', () => {
     });
   });
 
-  it('should select opponentTurn from the store', () => {
-    component.opponentTurn$.subscribe((opponentTurn) => {
-      expect(opponentTurn).toBe(false);
+  it('should select isOpponentTurn from the store', () => {
+    component.isOpponentTurn$.subscribe((isOpponentTurn) => {
+      expect(isOpponentTurn).toBe(false);
     });
   });
 

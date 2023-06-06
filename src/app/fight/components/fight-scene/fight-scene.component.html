@@ -1,35 +1,33 @@
 <div class="fightScene">
-  <div class="fightScene__topSection">
-    <div class="fightScene__opponent">
-      <div class="fightScene__opponent__token">
-        <app-golblin-token></app-golblin-token>
-      </div>
-      <ul>
-        <li>
-          <p>Name: {{ opponent?.name }}</p>
-        </li>
-        <li>
-          <p>Health: {{ opponent?.health }}</p>
-        </li>
-        <li>
-          <p>Attack: {{ opponent?.attack }}</p>
-        </li>
-        <li>
-          <p>Defense: {{ opponent?.defense }}</p>
-        </li>
-        <li>
-          <p>Speed: {{ opponent?.speed }}</p>
-        </li>
-      </ul>
+  <div
+    class="fightScene__opponent"
+    [ngClass]="{ fightScene__turnIndicator: isOpponentTurn }"
+  >
+    <div class="fightScene__opponent__token">
+      <app-golblin-token></app-golblin-token>
     </div>
-    <div class="fightScene__player">
-      <app-player-panel [player]="player"></app-player-panel>
-    </div>
+    <ul>
+      <li>
+        <p>Name: {{ opponent?.name }}</p>
+      </li>
+      <li>
+        <p>Health: {{ opponent?.health }}</p>
+      </li>
+      <li>
+        <p>Attack: {{ opponent?.attack }}</p>
+      </li>
+      <li>
+        <p>Defense: {{ opponent?.defense }}</p>
+      </li>
+      <li>
+        <p>Speed: {{ opponent?.speed }}</p>
+      </li>
+    </ul>
   </div>
-
-  <div class="fightScene__playerActions" *ngIf="!opponentTurn">
-    <button (click)="onPerformAction(actionType.ATTACK)">Attack</button>
-    <button (click)="onPerformAction(actionType.DEFEND)">Defend</button>
-    <button (click)="onPerformAction(actionType.FLEE)">Flee</button>
+  <div
+    class="fightScene__player"
+    [ngClass]="{ fightScene__turnIndicator: !isOpponentTurn }"
+  >
+    <app-player-panel [player]="player"></app-player-panel>
   </div>
 </div>

@@ -15,7 +15,7 @@ export const selectFightResult = createSelector(
   (state) => state.fightResult
 );
 
-export const selectOpponentTurn = createSelector(
+export const selectisOpponentTurn = createSelector(
   selectFightState,
   (state: FightState) => {
     log('current turn:', state.currentTurn);

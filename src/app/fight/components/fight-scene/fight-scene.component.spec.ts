@@ -54,14 +54,32 @@ describe('FightSceneComponent', () => {
     expect(playerPanelElement).toBeTruthy();
   });
 
-  it('should render player actions when it is not opponent turn', () => {
-    component.opponentTurn = false;
+  it("should apply the fightScene__turnIndicator class to the opponent section when it is the opponent's turn", () => {
+    component.isOpponentTurn = true;
     fixture.detectChanges();
 
-    const playerActionsElement = fixture.debugElement.query(
-      By.css('.fightScene__playerActions')
+    const opponentSectionElement = fixture.debugElement.query(
+      By.css('.fightScene__opponent')
     );
-    expect(playerActionsElement).toBeTruthy();
+    expect(
+      opponentSectionElement.nativeElement.classList.contains(
+        'fightScene__turnIndicator'
+      )
+    ).toBeTruthy();
+  });
+
+  it("should apply the fightScene__turnIndicator class to the player section when it is not the opponent's turn", () => {
+    component.isOpponentTurn = false;
+    fixture.detectChanges();
+
+    const playerSectionElement = fixture.debugElement.query(
+      By.css('.fightScene__player')
+    );
+    expect(
+      playerSectionElement.nativeElement.classList.contains(
+        'fightScene__turnIndicator'
+      )
+    ).toBeTruthy();
   });
 
   afterEach(() => {

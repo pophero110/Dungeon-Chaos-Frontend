@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import {
   selectFightOpponent,
   selectIsFighting,
-  selectOpponentTurn,
+  selectisOpponentTurn,
 } from '../../state/fight.selectors';
 import { selectPlayerState } from 'src/app/player/state/player.selectors';
 import { playerPerformAction } from '../../state/fight.actions';
@@ -17,7 +17,7 @@ import { ActionType } from '../../fight.model';
 export class FightContainerComponent {
   isFighting$ = this.store.select(selectIsFighting);
   opponent$ = this.store.select(selectFightOpponent);
-  opponentTurn$ = this.store.select(selectOpponentTurn);
+  isOpponentTurn$ = this.store.select(selectisOpponentTurn);
   player$ = this.store.select(selectPlayerState);
   constructor(private store: Store) {}
 

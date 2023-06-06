@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ActionType, Opponent } from '../../fight.model';
+import { Opponent } from '../../fight.model';
 import { Player } from 'src/app/player/player.model';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-fight-scene',
@@ -9,11 +8,7 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./fight-scene.component.scss'],
 })
 export class FightSceneComponent {
-  actionType = ActionType;
+  @Input() isOpponentTurn!: boolean | null;
   @Input() opponent!: Opponent | null;
-  @Input() opponentTurn!: boolean | null;
   @Input() player!: Player | null;
-  @Input() onPerformAction!: (actionType: ActionType) => void;
-
-  constructor(private store: Store) {}
 }
