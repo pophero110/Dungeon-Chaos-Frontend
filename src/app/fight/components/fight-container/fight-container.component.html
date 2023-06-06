@@ -1,0 +1,8 @@
+<ng-container *ngIf="isFighting$ | async">
+  <app-fight-scene
+    [onPerformAction]="onPerformAction"
+    [player]="player$ | async"
+    [opponent]="opponent$ | async"
+    [opponentTurn]="opponentTurn$ | async"
+  ></app-fight-scene>
+</ng-container>
