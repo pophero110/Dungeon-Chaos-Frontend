@@ -25,7 +25,7 @@ export const characterReducer = createReducer(
       state.characters,
       selectedCharacterId
     );
-    log('selected character', selectedCharacter, state.characters);
+    log('select character', selectedCharacter);
     if (selectedCharacter) {
       return {
         ...state,
