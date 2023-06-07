@@ -8,24 +8,24 @@
     ></app-rogue-token>
   </div>
 
-  <ul>
+  <ul *ngIf="player">
     <li>
-      <p>Name: {{ player?.name }}</p>
+      <p>Name: {{ player.name }}</p>
     </li>
     <li>
-      <p>Health: {{ player?.health }}</p>
+      <p>Health: {{ player.health }}</p>
     </li>
     <li>
-      <p>Attack: {{ player?.attack }}</p>
+      <p>Attack: {{ player.attack }}</p>
     </li>
     <li>
-      <p>Defense: {{ player?.defense }}</p>
+      <p>Defense: {{ player.defense }}</p>
     </li>
     <li>
-      <p>Speed: {{ player?.speed }}</p>
+      <p>Speed: {{ player.speed }}</p>
     </li>
     <li>
-      <p>Gold Coin: {{ player?.goldCoin }}</p>
+      <p>Gold Coin: {{ player.goldCoin }}</p>
     </li>
   </ul>
 </div>
