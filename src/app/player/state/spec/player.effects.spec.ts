@@ -10,6 +10,7 @@ import {
 import { PlayerService } from '../../service/player.service';
 import { Actions } from '@ngrx/effects';
 import { fakePlayerState } from 'src/app/test/fakeState';
+import { initializeInventory } from 'src/app/inventory/state/inventory.actions';
 
 describe('PlayerEffects', () => {
   let playerEffects: PlayerEffects;
@@ -43,10 +44,15 @@ describe('PlayerEffects', () => {
 
     actions$ = of(createPlayer({ selectedCharacterId }));
 
-    playerEffects.createPlayer$.subscribe((result: unknown) => {
-      expect(result).toEqual(
-        createPlayerSuccess({ playerState: fakePlayerState })
-      );
+    playerEffects.createPlayer$.subscribe((result: any) => {
+      console.log({ result });
+      if (result.type === createPlayerSuccess.type) {
+        expect(result).toEqual(
+          createPlayerSuccess({ playerState: fakePlayerState })
+        );
+      } else {
+        expect(result.type).toEqual(initializeInventory.type);
+      }
     });
   });
 
