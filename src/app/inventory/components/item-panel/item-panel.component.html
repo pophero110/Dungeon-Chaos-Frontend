@@ -1,0 +1,80 @@
+<div *ngIf="selectedInventoryItem?.item" class="inventory__itemPanel">
+  <div class="inventory__itemPanel__itemDetails">
+    <ng-container [ngSwitch]="selectedInventoryItem?.item?.id">
+      <div class="inventory__itemPanel__itemDetails__token">
+        <app-plain-sword-token *ngSwitchCase="1"></app-plain-sword-token>
+        <app-round-shield-token *ngSwitchCase="2"></app-round-shield-token>
+        <app-health-potion-token *ngSwitchCase="3"></app-health-potion-token>
+        <app-broad-sword-token *ngSwitchCase="4"></app-broad-sword-token>
+        <app-viking-shield-token *ngSwitchCase="5"></app-viking-shield-token>
+      </div>
+    </ng-container>
+    <div class="inventory__itemPanel__itemDetails__description">
+      <p class="inventory__itemPanel__itemDetails__name">
+        {{ selectedInventoryItem?.item?.name }}
+      </p>
+      <ul *ngIf="selectedInventoryItem?.item?.type === itemType.EQUIPMENT">
+        <li>
+          <p>Health: {{ selectedInventoryItem?.item?.health || 0 }}</p>
+        </li>
+        <li>
+          <p>Attack: {{ selectedInventoryItem?.item?.attack || 0 }}</p>
+        </li>
+        <li>
+          <p>Defense: {{ selectedInventoryItem?.item?.defense || 0 }}</p>
+        </li>
+        <li>
+          <p>Speed: {{ selectedInventoryItem?.item?.speed || 0 }}</p>
+        </li>
+        <li>
+          <p>
+            Special Ability:
+            {{ selectedInventoryItem?.item?.specialAbility || "none" }}
+          </p>
+        </li>
+      </ul>
+      <ul *ngIf="selectedInventoryItem?.item?.type === itemType.POTION">
+        <!-- <li>
+          <p>Type: {{ selectedInventoryItem?.potionType }}</p>
+        </li> -->
+        <li>
+          <p>Effect: {{ selectedInventoryItem?.item?.potionEffect }}</p>
+        </li>
+        <!-- <li>
+          <p>Duration: {{ selectedInventoryItem?.potionDuration }}</p>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+  <div class="inventory__itemPanel__itemActionMenu">
+    <div
+      (click)="onItemEquipButtonClick(selectedInventoryItem)"
+      class="inventory__itemPanel__itemActionMenu__action inventory__itemPanel__itemActionMenu__action-equip"
+      *ngIf="
+        selectedInventoryItem?.item?.type === itemType.EQUIPMENT &&
+        !selectedInventoryItem?.equipped
+      "
+    >
+      <div>Equip</div>
+    </div>
+    <div
+      (click)="onItemUnequipButtonClick(selectedInventoryItem)"
+      class="inventory__itemPanel__itemActionMenu__action inventory__itemPanel__itemActionMenu__action-unequip"
+      *ngIf="selectedInventoryItem?.equipped"
+    >
+      <div>Unequip</div>
+    </div>
+    <div
+      class="inventory__itemPanel__itemActionMenu__action"
+      *ngIf="selectedInventoryItem?.item?.type === itemType.POTION"
+    >
+      <div>Drink</div>
+    </div>
+    <div
+      class="inventory__itemPanel__itemActionMenu__action inventory__itemPanel__itemActionMenu__action-close"
+      (click)="onItemPanelCloseButtonClick()"
+    >
+      Close
+    </div>
+  </div>
+</div>
