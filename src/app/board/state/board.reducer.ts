@@ -5,7 +5,7 @@ import {
   makeMove,
   removeMonsterToken,
 } from './board.actions';
-import { convertToMatrixIndex, isValidMove } from '../board.utils';
+import { convertToMatrixIndex } from '../board.utils';
 
 export interface BoardState {
   tileMatrix: string[][];
@@ -31,13 +31,10 @@ export const boardReducer = createReducer(
     return { ...state };
   }),
   on(makeMove, (state, { position }) => {
-    if (isValidMove(state.currentPlayerPosition, position)) {
-      return {
-        ...state,
-        currentPlayerPosition: position,
-      };
-    }
-    return { ...state };
+    return {
+      ...state,
+      currentPlayerPosition: position,
+    };
   }),
   on(removeMonsterToken, (state, { position }) => {
     if (position) {
