@@ -7,6 +7,13 @@ import { RogueTokenComponent } from './character/rogue-token/rogue-token.compone
 import { PortalTokenComponent } from './board/portal-token/portal-token.component';
 import { EntryTokenComponent } from './board/entry-token/entry-token.component';
 import { GolblinTokenComponent } from './board/golblin-token/golblin-token.component';
+import { TreasureTokenComponent } from './board/treasure-token/treasure-token.component';
+import { PlainSwordTokenComponent } from './inventory/plain-sword-token/plain-sword-token.component';
+import { HealthPotionTokenComponent } from './inventory/health-potion-token/health-potion-token.component';
+import { PlainDaggerTokenComponent } from './inventory/plain-dagger-token/plain-dagger-token.component';
+import { RoundShieldTokenComponent } from './inventory/round-shield-token/round-shield-token.component';
+import { BroadSwordTokenComponent } from './inventory/broad-sword-token/broad-sword-token.component';
+import { VikingShieldTokenComponent } from './inventory/viking-shield-token/viking-shield-token.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +24,13 @@ import { GolblinTokenComponent } from './board/golblin-token/golblin-token.compo
     PortalTokenComponent,
     EntryTokenComponent,
     GolblinTokenComponent,
+    TreasureTokenComponent,
+    HealthPotionTokenComponent,
+    PlainSwordTokenComponent,
+    PlainDaggerTokenComponent,
+    RoundShieldTokenComponent,
+    BroadSwordTokenComponent,
+    VikingShieldTokenComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -27,6 +41,13 @@ import { GolblinTokenComponent } from './board/golblin-token/golblin-token.compo
     PortalTokenComponent,
     EntryTokenComponent,
     GolblinTokenComponent,
+    TreasureTokenComponent,
+    HealthPotionTokenComponent,
+    PlainSwordTokenComponent,
+    PlainDaggerTokenComponent,
+    RoundShieldTokenComponent,
+    BroadSwordTokenComponent,
+    VikingShieldTokenComponent,
   ],
 })
 export class TokenModule {}
