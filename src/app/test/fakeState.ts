@@ -1,5 +1,5 @@
 import { Character, CharacterName } from '../character/character.model';
-import { FightResult } from '../fight/fight.model';
+import { ActionType, FightResult } from '../fight/fight.model';
 import { CurrentTurn } from '../fight/fight.model';
 import { Opponent } from '../fight/fight.model';
 import { FightState } from '../fight/state/fight.reducer';
@@ -68,4 +68,6 @@ export const fakeFightState: FightState = {
   currentTurn: CurrentTurn.PLAYER,
   opponentPosition: 2,
   isFighting: true,
+  opponentActionType: ActionType.ATTACK,
+  playerActionType: ActionType.ATTACK,
 };
