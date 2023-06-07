@@ -1,0 +1,24 @@
+.inventorySlots {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: repeat(3, 80px);
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  &__slot {
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    background-color: lightgrey;
+    position: relative;
+    cursor: pointer;
+    &__quantityIndicator {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
