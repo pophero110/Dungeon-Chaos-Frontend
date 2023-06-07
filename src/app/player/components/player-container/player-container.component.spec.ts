@@ -9,8 +9,6 @@ import { PlayerModule } from '../../player.module';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Store } from '@ngrx/store';
 import { fakePlayerState } from 'src/app/test/fakeState';
-import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 describe('PlayerContainerComponent', () => {
   let component: PlayerContainerComponent;

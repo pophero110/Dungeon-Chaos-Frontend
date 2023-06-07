@@ -5,6 +5,7 @@ import {
   playerDie,
   updatePlayer,
 } from './player.actions';
+import { log } from 'src/app/utils/log';
 
 export interface PlayerState {
   id: number;
@@ -29,6 +30,7 @@ export const playerReducer = createReducer(
     isCreated: true,
   })),
   on(updatePlayer, (state, { playerState }) => {
+    log('update player attributes', playerState);
     return {
       ...state,
       ...playerState,

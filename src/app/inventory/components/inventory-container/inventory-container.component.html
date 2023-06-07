@@ -1,0 +1,17 @@
+<div class="inventoryContainer" *ngIf="isPlayerCreated$ | async">
+  <app-equipment-slots
+    [equippedArmor]="selectEquippedArmor$ | async"
+    [equippedWeapon]="selectEquippedWeapon$ | async"
+    [onEquipmentSlotClick]="onEquipmentSlotClick"
+  ></app-equipment-slots>
+  <app-inventory-slots
+    [inventoryItems]="inventoryItems$ | async"
+    [onInventorySlotClick]="onInventorySlotClick"
+  ></app-inventory-slots>
+  <app-item-panel
+    [selectedInventoryItem]="selectedInventoryItem$ | async"
+    [onItemPanelCloseButtonClick]="onItemPanelCloseButtonClick"
+    [onItemEquipButtonClick]="onItemEquipButtonClick"
+    [onItemUnequipButtonClick]="onItemUnequipButtonClick"
+  ></app-item-panel>
+</div>
