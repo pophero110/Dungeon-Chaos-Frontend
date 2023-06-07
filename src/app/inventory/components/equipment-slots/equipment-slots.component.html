@@ -1,0 +1,34 @@
+<div class="equipmentSlots">
+  <div
+    *ngIf="equippedWeapon"
+    (click)="onEquipmentSlotClick(equippedWeapon)"
+    class="equipmentSlots__slot equipmentSlots__slot-weapon"
+  >
+    <ng-container [ngSwitch]="equippedWeapon.item.id">
+      <app-plain-sword-token *ngSwitchCase="1"></app-plain-sword-token>
+      <app-broad-sword-token *ngSwitchCase="4"></app-broad-sword-token>
+    </ng-container>
+  </div>
+  <div
+    *ngIf="!equippedWeapon"
+    class="equipmentSlots__slot equipmentSlots__slot-weaponAlt"
+  >
+    <p>Weapon</p>
+  </div>
+  <div
+    *ngIf="equippedArmor"
+    (click)="onEquipmentSlotClick(equippedArmor)"
+    class="equipmentSlots__slot equipmentSlots__slot-armor"
+  >
+    <ng-container [ngSwitch]="equippedArmor.item.id">
+      <app-round-shield-token *ngSwitchCase="2"></app-round-shield-token>
+      <app-viking-shield-token *ngSwitchCase="5"></app-viking-shield-token>
+    </ng-container>
+  </div>
+  <div
+    *ngIf="!equippedArmor"
+    class="equipmentSlots__slot equipmentSlots__slot-armorAlt"
+  >
+    <p>Armor</p>
+  </div>
+</div>
