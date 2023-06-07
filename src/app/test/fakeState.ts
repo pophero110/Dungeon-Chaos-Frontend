@@ -3,6 +3,12 @@ import { ActionType, FightResult } from '../fight/fight.model';
 import { CurrentTurn } from '../fight/fight.model';
 import { Opponent } from '../fight/fight.model';
 import { FightState } from '../fight/state/fight.reducer';
+import {
+  EquipmentType,
+  InventoryItem,
+  Item,
+  ItemType,
+} from '../inventory/inventory.model';
 import { Player } from '../player/player.model';
 import { PlayerState } from '../player/state/player.reducer';
 
@@ -70,4 +76,50 @@ export const fakeFightState: FightState = {
   isFighting: true,
   opponentActionType: ActionType.ATTACK,
   playerActionType: ActionType.ATTACK,
+};
+
+export const fakeWeapon: Item = {
+  id: 1,
+  type: ItemType.EQUIPMENT,
+  name: 'Sword',
+  attack: 5,
+  health: 0,
+  defense: 0,
+  speed: 0,
+  rarity: '',
+  equipmentType: EquipmentType.WEAPON,
+  specialAbility: '',
+  potionType: '',
+  potionEffect: '',
+  potionDuration: 0,
+};
+
+export const fakeInventoryItemWeapon: InventoryItem = {
+  id: 0,
+  item: fakeWeapon,
+  itemQuantity: 1,
+  equipped: false,
+};
+
+export const fakeArmor: Item = {
+  id: 2,
+  type: ItemType.EQUIPMENT,
+  name: 'Shield',
+  attack: 0,
+  health: 5,
+  defense: 0,
+  speed: 0,
+  rarity: '',
+  equipmentType: EquipmentType.ARMOR,
+  specialAbility: '',
+  potionType: '',
+  potionEffect: '',
+  potionDuration: 0,
+};
+
+export const fakeInventoryItemArmor: InventoryItem = {
+  id: 0,
+  item: fakeArmor,
+  itemQuantity: 1,
+  equipped: false,
 };
