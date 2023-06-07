@@ -7,6 +7,7 @@ import { BoardModule } from './board/board.module';
 import { CharacterModule } from './character/character.module';
 import { FightModule } from './fight/fight.module';
 import { PlayerModule } from './player/player.module';
+import { InventoryModule } from './inventory/inventory.module';
 
 describe('AppComponent', () => {
   beforeEach(() =>
@@ -21,6 +22,7 @@ describe('AppComponent', () => {
         BoardModule,
         FightModule,
         PlayerModule,
+        InventoryModule,
       ],
     })
   );

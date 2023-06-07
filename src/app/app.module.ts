@@ -16,6 +16,10 @@ import { FightEffects } from './fight/state/fight.effects';
 import { fightReducer } from './fight/state/fight.reducer';
 import { FightModule } from './fight/fight.module';
 import { PlayerModule } from './player/player.module';
+import { InventoryModule } from './inventory/inventory.module';
+import { inventoryReducer } from './inventory/state/inventory.reducer';
+import { InventoryEffects } from './inventory/state/inventory.effects';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,18 +29,21 @@ import { PlayerModule } from './player/player.module';
       character: characterReducer,
       player: playerReducer,
       fight: fightReducer,
+      inventory: inventoryReducer,
     }),
     EffectsModule.forRoot([
       BoardEffects,
       CharacterEffects,
       PlayerEffects,
       FightEffects,
+      InventoryEffects,
     ]),
     HttpClientModule,
     CharacterModule,
     BoardModule,
     FightModule,
     PlayerModule,
+    InventoryModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

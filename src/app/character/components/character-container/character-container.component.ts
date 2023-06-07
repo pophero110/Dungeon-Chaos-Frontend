@@ -27,7 +27,6 @@ export class CharacterContainerComponent implements OnInit {
   }
 
   onCharacterSelection() {
-    log('select characte, id: ' + this.selectedCharacterId);
     this.store.dispatch(
       selectCharacter({ selectedCharacterId: this.selectedCharacterId })
     );
