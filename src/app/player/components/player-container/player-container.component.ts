@@ -13,9 +13,5 @@ import {
 export class PlayerContainerComponent {
   player$ = this.store.select(selectPlayerState);
   isPlayerCreated$ = this.store.select(selectIsPlayerCreated);
-  constructor(private store: Store) {
-    this.isPlayerCreated$.subscribe((isPlayerCreated) => {
-      console.log({ isPlayerCreated });
-    });
-  }
+  constructor(private store: Store) {}
 }
