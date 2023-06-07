@@ -6,6 +6,7 @@ import {
   fakeInventoryItemArmor,
   fakeInventoryItemWeapon,
 } from 'src/app/test/fakeState';
+import { InventoryModule } from '../../inventory.module';
 
 describe('EquipmentSlotsComponent', () => {
   let component: EquipmentSlotsComponent;
@@ -14,13 +15,13 @@ describe('EquipmentSlotsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EquipmentSlotsComponent],
+      imports: [InventoryModule],
       providers: [provideMockStore()],
     });
     fixture = TestBed.createComponent(EquipmentSlotsComponent);
     component = fixture.componentInstance;
     component.equippedWeapon = fakeInventoryItemWeapon;
-    component.equippedArmor = fakeInventoryItemWeapon;
+    component.equippedArmor = fakeInventoryItemArmor;
     mockOnEquipmentSlotClick = jasmine.createSpy('onEquipmentSlotClick');
     component.onEquipmentSlotClick = mockOnEquipmentSlotClick;
     fixture.detectChanges();
