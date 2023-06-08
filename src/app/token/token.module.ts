@@ -15,6 +15,7 @@ import { RoundShieldTokenComponent } from './inventory/round-shield-token/round-
 import { BroadSwordTokenComponent } from './inventory/broad-sword-token/broad-sword-token.component';
 import { VikingShieldTokenComponent } from './inventory/viking-shield-token/viking-shield-token.component';
 import { BowieKnfieTokenComponent } from './inventory/bowie-knfie-token/bowie-knfie-token.component';
+import { FogTokenComponent } from './board/fog-token/fog-token.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { BowieKnfieTokenComponent } from './inventory/bowie-knfie-token/bowie-kn
     BroadSwordTokenComponent,
     VikingShieldTokenComponent,
     BowieKnfieTokenComponent,
+    FogTokenComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -51,6 +53,7 @@ import { BowieKnfieTokenComponent } from './inventory/bowie-knfie-token/bowie-kn
     BroadSwordTokenComponent,
     VikingShieldTokenComponent,
     BowieKnfieTokenComponent,
+    FogTokenComponent,
   ],
 })
 export class TokenModule {}

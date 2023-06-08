@@ -1,25 +1,33 @@
-<div (click)="onTileClick(tileType, position, playerId)">
-  <ng-container
-    *ngIf="position === currentPlayerPosition"
-    class="board__tile-character"
-  >
-    <app-warrior-token
-      *ngIf="playerCharacterName === characterName.Warrior"
-    ></app-warrior-token>
-    <app-rogue-token
-      *ngIf="playerCharacterName === characterName.Rogue"
-    ></app-rogue-token>
-  </ng-container>
+<ng-container *ngIf="tileType | tileState as tile">
+  <div (click)="onTileClick(tile.tileType, position, playerId)">
+    <ng-container
+      *ngIf="position === currentPlayerPosition"
+      class="board__tile-character"
+    >
+      <app-warrior-token
+        *ngIf="playerCharacterName === characterName.Warrior"
+      ></app-warrior-token>
+      <app-rogue-token
+        *ngIf="playerCharacterName === characterName.Rogue"
+      ></app-rogue-token>
+    </ng-container>
 
-  <ng-container
-    *ngIf="position !== currentPlayerPosition"
-    [ngSwitch]="tileType"
-  >
-    <app-path-token *ngSwitchCase="'P'"></app-path-token>
-    <app-wall-token *ngSwitchCase="'W'"></app-wall-token>
-    <app-entry-token *ngSwitchCase="'S'"></app-entry-token>
-    <app-portal-token *ngSwitchCase="'E'"></app-portal-token>
-    <app-golblin-token *ngSwitchCase="'M'"></app-golblin-token>
-    <app-treasure-token *ngSwitchCase="'T'"></app-treasure-token>
-  </ng-container>
-</div>
+    <!-- <ng-container *ngIf="true"> -->
+    <ng-container *ngIf="tile.visited">
+      <ng-container
+        *ngIf="position !== currentPlayerPosition"
+        [ngSwitch]="tile.tileType"
+      >
+        <app-path-token *ngSwitchCase="'P'"></app-path-token>
+        <app-wall-token *ngSwitchCase="'W'"></app-wall-token>
+        <app-entry-token *ngSwitchCase="'S'"></app-entry-token>
+        <app-portal-token *ngSwitchCase="'E'"></app-portal-token>
+        <app-golblin-token *ngSwitchCase="'M'"></app-golblin-token>
+        <app-treasure-token *ngSwitchCase="'T'"></app-treasure-token>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!tile.visited">
+      <app-fog-token></app-fog-token>
+    </ng-container>
+  </div>
+</ng-container>

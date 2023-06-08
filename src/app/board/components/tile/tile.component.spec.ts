@@ -23,6 +23,7 @@ describe('TileComponent', () => {
     component.onTileClick = mockOnTileClick;
     component.currentPlayerPosition = 2;
     component.playerId = playerId;
+    component.tileType = 'P!';
     fixture.detectChanges();
   });
 
@@ -30,8 +31,8 @@ describe('TileComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the path token when the tile type is "P"', () => {
-    component.tileType = 'P';
+  it('should display the path token when the tile type is "P!"', () => {
+    component.tileType = 'P!';
     fixture.detectChanges();
     const pathTokenElement = fixture.debugElement.query(
       By.css('app-path-token')

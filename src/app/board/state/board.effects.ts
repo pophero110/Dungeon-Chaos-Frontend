@@ -9,6 +9,11 @@ import {
   fetchBoardSuccess,
 } from './board.actions';
 import { FetchBoardResponse } from 'src/app/utils/api/boardApi';
+import {
+  convertArrayStringIntoMatrix,
+  findPositionOfStartingPoint,
+  hideTilesExceptTilesSurroundingStartTile,
+} from '../board.utils';
 
 @Injectable()
 export class BoardEffects {
@@ -18,13 +23,17 @@ export class BoardEffects {
       mergeMap(() =>
         this.boardService.fetchBoard().pipe(
           map((response) => {
-            const tileMatrix = this.convertArrayStringIntoMatrix(
+            const tileMatrix = convertArrayStringIntoMatrix(
               (response as FetchBoardResponse).board
             );
             const currentPlayerPosition =
-              this.findPositionOfStartingPoint(tileMatrix);
-            return fetchBoardSuccess({
+              findPositionOfStartingPoint(tileMatrix);
+            const hiddenTileMatrix = hideTilesExceptTilesSurroundingStartTile(
               tileMatrix,
+              currentPlayerPosition
+            );
+            return fetchBoardSuccess({
+              tileMatrix: hiddenTileMatrix,
               currentPlayerPosition,
             });
           }),
@@ -33,20 +42,6 @@ export class BoardEffects {
       )
     )
   );
-
-  private convertArrayStringIntoMatrix(array: string[]): string[][] {
-    return array.map((row) => row.split(''));
-  }
-
-  private findPositionOfStartingPoint(matrix: string[][]): number {
-    let position = 0;
-    matrix.forEach((arr, row) => {
-      arr.find((string, column) => {
-        if (string === 'S') position = row * 12 + column;
-      });
-    });
-    return position;
-  }
 
   constructor(private actions$: Actions, private boardService: BoardService) {}
 }

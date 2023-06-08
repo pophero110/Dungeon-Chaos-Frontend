@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RewardPanelComponent } from './reward-panel.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('RewardPanelComponent', () => {
   let component: RewardPanelComponent;
@@ -8,7 +9,8 @@ describe('RewardPanelComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RewardPanelComponent]
+      declarations: [RewardPanelComponent],
+      providers: [provideMockStore()],
     });
     fixture = TestBed.createComponent(RewardPanelComponent);
     component = fixture.componentInstance;
