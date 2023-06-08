@@ -10,6 +10,7 @@ import { PlayerModule } from './player/player.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { RewardModule } from './reward/reward.module';
 import { ItemModule } from './item/item.module';
+import { MainMenuModule } from './mainMenu/main-menu.module';
 
 describe('AppComponent', () => {
   beforeEach(() =>
@@ -27,6 +28,7 @@ describe('AppComponent', () => {
         InventoryModule,
         RewardModule,
         ItemModule,
+        MainMenuModule,
       ],
     })
   );

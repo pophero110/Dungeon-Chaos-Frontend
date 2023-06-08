@@ -178,7 +178,10 @@ describe('FightEffects', () => {
       actions$ = of(opponentPerformAction());
       effects.opponentPerformAction$.subscribe((result) => {
         expect(result).toBeTruthy();
-        expect([playerLoseFight.type.toString()]).toContain(result.type);
+        expect([
+          playerLoseFight.type.toString(),
+          updatePlayer.type.toString(),
+        ]).toContain(result.type);
       });
     });
 

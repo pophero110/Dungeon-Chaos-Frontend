@@ -18,7 +18,7 @@ describe('BoardComponent', () => {
   let component: BoardComponent;
   let fixture: ComponentFixture<BoardComponent>;
   let store: MockStore;
-
+  let mockClickSound: jasmine.SpyObj<HTMLAudioElement>;
   const fakeCurrentPlayerPosition = 1;
   const fakePlayerCharacterName = 'Warrior';
 
@@ -37,7 +37,10 @@ describe('BoardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BoardComponent);
     component = fixture.componentInstance;
-
+    mockClickSound = jasmine.createSpyObj<HTMLAudioElement>('clickSound', [
+      'play',
+    ]);
+    component.clickSound = mockClickSound;
     store = TestBed.inject(Store) as MockStore;
     store.overrideSelector(selectBoard, fakeBoard);
     store.overrideSelector(
