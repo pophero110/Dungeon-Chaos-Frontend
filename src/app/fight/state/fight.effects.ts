@@ -20,10 +20,7 @@ import {
   OPPONENT_TURN_DURATION,
 } from '../fight.model';
 import { playerDie, updatePlayer } from 'src/app/player/state/player.actions';
-import {
-  fetchBoard,
-  removeMonsterToken,
-} from 'src/app/board/state/board.actions';
+import { fetchBoard, removeToken } from 'src/app/board/state/board.actions';
 import { opponentPerformActionError, playerWinFight } from './fight.actions';
 import { log, logStart } from 'src/app/utils/log';
 import { FightState } from './fight.reducer';
@@ -124,7 +121,7 @@ export class FightEffects {
             return concat(
               of(endFight()),
               of(
-                removeMonsterToken({
+                removeToken({
                   position: this.opponentPosition,
                 })
               ),
