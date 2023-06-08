@@ -81,7 +81,7 @@ describe('BoardComponent', () => {
   it('should dispatch startFight action when tileType is M', () => {
     spyOn(store, 'dispatch');
     const tileType = 'M';
-    const position = 1;
+    const position = 2;
     const monsterId = 1;
     const playerId = 1;
     component.onTileClick(tileType, position, playerId);

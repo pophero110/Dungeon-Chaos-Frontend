@@ -17,8 +17,8 @@ describe('FightContainerComponent', () => {
   let store: MockStore;
 
   const initialState = {
-    fight: fakeFightState,
-    player: fakePlayerState,
+    fight: { ...fakeFightState },
+    player: { ...fakePlayerState },
   };
 
   beforeEach(async () => {
