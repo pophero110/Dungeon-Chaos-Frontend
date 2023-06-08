@@ -1,0 +1,48 @@
+<div *ngIf="rewardItemId && items" class="rewardPanel">
+  <ng-container [ngSwitch]="rewardItemId">
+    <div class="rewardPanel__item__token">
+      <app-plain-sword-token *ngSwitchCase="1"></app-plain-sword-token>
+      <app-round-shield-token *ngSwitchCase="2"></app-round-shield-token>
+      <app-health-potion-token *ngSwitchCase="3"></app-health-potion-token>
+      <app-broad-sword-token *ngSwitchCase="4"></app-broad-sword-token>
+      <app-viking-shield-token *ngSwitchCase="5"></app-viking-shield-token>
+      <app-plain-dagger-token *ngSwitchCase="6"></app-plain-dagger-token>
+      <app-bowie-knfie-token *ngSwitchCase="7"></app-bowie-knfie-token>
+    </div>
+  </ng-container>
+  <!-- array is zero-indexed but items are one-indexed so minus one here  -->
+  <div class="rewardPanel__item" *ngIf="items[rewardItemId - 1] as rewardItem">
+    <div class="rewardPanel__item__name">{{ rewardItem.name }}</div>
+    <div
+      class="rewardPanel__item__description"
+      *ngIf="rewardItem.type === itemType.EQUIPMENT"
+    >
+      <p>Health: {{ rewardItem.health }}</p>
+      <p>Attack: {{ rewardItem.attack }}</p>
+      <p>Defense: {{ rewardItem.defense }}</p>
+      <p>Speed: {{ rewardItem.speed }}</p>
+      <p>Rarity: {{ rewardItem.rarity }}</p>
+      <p>Special Ability: {{ rewardItem.specialAbility || "none" }}</p>
+    </div>
+    <div
+      class="rewardPanel__item__description"
+      *ngIf="rewardItem.type === itemType.POTION"
+    >
+      <p>Effect: {{ rewardItem.potionEffect }}</p>
+    </div>
+  </div>
+  <div class="rewardPanel__actionMenu" *ngIf="treasurePosition != null">
+    <div
+      (click)="onTakeTreasureButtonClick(rewardItemId, treasurePosition)"
+      class="rewardPanel__actionMenu__action"
+    >
+      Take
+    </div>
+    <div
+      (click)="ondiscardTreasureButtonClick(treasurePosition)"
+      class="rewardPanel__actionMenu__action"
+    >
+      Discard
+    </div>
+  </div>
+</div>
