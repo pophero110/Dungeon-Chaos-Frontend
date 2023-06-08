@@ -13,6 +13,7 @@ import { distinctUntilChanged } from 'rxjs';
 import { startFight } from 'src/app/fight/state/fight.actions';
 import { log } from 'src/app/utils/log';
 import { openTreasure } from 'src/app/reward/state/reward.actions';
+import { isSurroundingTile } from '../../board.utils';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -21,6 +22,7 @@ import { openTreasure } from 'src/app/reward/state/reward.actions';
 export class BoardComponent implements OnInit {
   board$ = this.store.select(selectBoard);
   playerId$ = this.store.select(selectPlayerId);
+  currentPlayerPosition!: number;
   currentPlayerPosition$ = this.store
     .select(selectCurrentPlayerPosition)
     .pipe(distinctUntilChanged());
@@ -32,7 +34,11 @@ export class BoardComponent implements OnInit {
     return position + tileType;
   }
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+    this.currentPlayerPosition$.subscribe((currentPlayerPosition) => {
+      this.currentPlayerPosition = currentPlayerPosition;
+    });
+  }
 
   ngOnInit(): void {
     this.store.dispatch(fetchBoard());
@@ -40,9 +46,22 @@ export class BoardComponent implements OnInit {
 
   onTileClick(tileType: string, position: number, playerId: number | null) {
     log('tile click', { tileType, position });
+
     if (['P', 'S', 'E'].includes(tileType)) {
       this.store.dispatch(makeMove({ position }));
-    } else if (tileType === 'M') {
+      return;
+    }
+
+    if (
+      !isSurroundingTile({
+        currentPosition: this.currentPlayerPosition,
+        targetPosition: position,
+      })
+    ) {
+      return;
+    }
+
+    if (tileType === 'M') {
       //TODO: fetch monsterid dynamically
       log('tile click - start fight', { playerId });
       this.store.dispatch(
@@ -52,13 +71,17 @@ export class BoardComponent implements OnInit {
           opponentPosition: position,
         })
       );
-    } else if (tileType === 'T') {
+      return;
+    }
+
+    if (tileType === 'T') {
       this.store.dispatch(
         openTreasure({
           playerId: playerId as number,
           treasurePosition: position,
         })
       );
+      return;
     } else {
       console.error('No such tile type: ' + tileType);
     }
