@@ -24,21 +24,12 @@ export class InventoryService {
     return this.http.get(getInventoryUrl(inventoryId));
   }
 
-  public addItemToInventory(
-    inventoryId: number,
-    inventoryRequest: InventoryRequest
-  ) {
-    return this.http.post(addItemToInventoryUrl(inventoryId), inventoryRequest);
+  public addItemToInventory(inventoryId: number, itemId: number) {
+    return this.http.post(addItemToInventoryUrl(inventoryId), { itemId });
   }
 
-  public removeItemFromInventory(
-    inventoryId: number,
-    inventoryRequest: InventoryRequest
-  ) {
-    return this.http.put(
-      removeItemFromInventoryUrl(inventoryId),
-      inventoryRequest
-    );
+  public removeItemFromInventory(inventoryId: number, itemId: number) {
+    return this.http.put(removeItemFromInventoryUrl(inventoryId), { itemId });
   }
 
   public equipWeapon(inventoryItemId: number) {

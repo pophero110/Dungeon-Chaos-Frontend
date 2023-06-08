@@ -74,11 +74,6 @@ export const unequipArmorError = createAction(
   props<{ error: unknown }>()
 );
 
-export const drinkPotion = createAction(
-  '[Inventory] Drink Potion',
-  props<{ inventoryItemId: number }>()
-);
-
 export const fetchInventory = createAction(
   '[Inventory] Fetch Inventory',
   props<{ inventoryState: InventoryState }>()
@@ -96,7 +91,7 @@ export const fetchInventoryError = createAction(
 
 export const addItemToInventory = createAction(
   '[Inventory] Add Item To Inventory',
-  props<{ inventoryState: InventoryState }>()
+  props<{ itemId: number }>()
 );
 
 export const addItemToInventorySuccess = createAction(
@@ -111,7 +106,7 @@ export const addItemToInventoryError = createAction(
 
 export const removeItemFromInventory = createAction(
   '[Inventory] Remove Item From Inventory',
-  props<{ inventoryState: InventoryState }>()
+  props<{ itemId: number }>()
 );
 
 export const removeItemFromInventorySuccess = createAction(

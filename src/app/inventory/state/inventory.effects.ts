@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
+  addItemToInventorySuccess,
   equipArmor,
   equipArmorError,
   equipArmorSuccess,
   equipWeapon,
   equipWeaponError,
   equipWeaponSuccess,
+  hideItemPanel,
+  removeItemFromInventory,
+  removeItemFromInventorySuccess,
   unequipArmor,
   unequipArmorError,
   unequipArmorSuccess,
@@ -20,7 +24,12 @@ import { InventoryState } from './inventory.reducer';
 import { log } from 'src/app/utils/log';
 import { PlayerState } from '../../player/state/player.reducer';
 import { updatePlayer } from 'src/app/player/state/player.actions';
+import { addItemToInventory } from './inventory.actions';
+import { Store } from '@ngrx/store';
+import { selectInventoryId } from './inventory.selelctors';
 
+//TODO break down this file into multiple files
+// like inventoryItemEffects
 @Injectable()
 export class InventoryEffects {
   equipWeapon$ = createEffect(() =>
@@ -119,8 +128,59 @@ export class InventoryEffects {
     )
   );
 
+  addItemToInventory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addItemToInventory),
+      mergeMap(({ itemId }) => {
+        return this.inventoryService
+          .addItemToInventory(this.inventoryId, itemId)
+          .pipe(
+            mergeMap((response) => {
+              return concat(
+                of(
+                  addItemToInventorySuccess({
+                    inventoryState: response as InventoryState,
+                  })
+                )
+              );
+            }),
+            catchError((error) => of(equipArmorError({ error })))
+          );
+      })
+    )
+  );
+
+  removeItemFromInventory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(removeItemFromInventory),
+      mergeMap(({ itemId }) => {
+        return this.inventoryService
+          .removeItemFromInventory(this.inventoryId, itemId)
+          .pipe(
+            mergeMap((response) => {
+              return concat(
+                of(
+                  removeItemFromInventorySuccess({
+                    inventoryState: response as InventoryState,
+                  })
+                ),
+                of(hideItemPanel())
+              );
+            }),
+            catchError((error) => of(equipArmorError({ error })))
+          );
+      })
+    )
+  );
+  private inventoryId!: number;
+  private inventoryId$ = this.store.select(selectInventoryId);
   constructor(
     private actions$: Actions,
-    private inventoryService: InventoryService
-  ) {}
+    private inventoryService: InventoryService,
+    private store: Store
+  ) {
+    this.inventoryId$.subscribe((inventoryId) => {
+      this.inventoryId = inventoryId;
+    });
+  }
 }

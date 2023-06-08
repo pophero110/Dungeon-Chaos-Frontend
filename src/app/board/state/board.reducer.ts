@@ -3,7 +3,7 @@ import {
   fetchBoardError,
   fetchBoardSuccess,
   makeMove,
-  removeMonsterToken,
+  removeToken,
 } from './board.actions';
 import { convertToMatrixIndex } from '../board.utils';
 
@@ -36,7 +36,7 @@ export const boardReducer = createReducer(
       currentPlayerPosition: position,
     };
   }),
-  on(removeMonsterToken, (state, { position }) => {
+  on(removeToken, (state, { position }) => {
     if (position) {
       const { row, col } = convertToMatrixIndex(position);
       const tileMatrix = [...state.tileMatrix];
@@ -44,7 +44,7 @@ export const boardReducer = createReducer(
       tileMatrix[row][col] = 'P';
       return {
         ...state,
-        tileMatrix,
+        tileMatrix: [...tileMatrix],
       };
     }
     return {

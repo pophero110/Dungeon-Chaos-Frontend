@@ -10,6 +10,7 @@ import {
   equipArmor,
   equipWeapon,
   hideItemPanel,
+  removeItemFromInventory,
   showItemPanel,
   unequipArmor,
   unequipWeapon,
@@ -70,5 +71,11 @@ export class InventoryContainerComponent {
       console.error('No such equipment type');
     }
     this.store.dispatch(hideItemPanel());
+  }
+
+  onItemDiscardButtonClick(inventoryItem: InventoryItem) {
+    this.store.dispatch(
+      removeItemFromInventory({ itemId: inventoryItem.item.id })
+    );
   }
 }

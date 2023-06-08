@@ -12,6 +12,7 @@ import {
 import { distinctUntilChanged } from 'rxjs';
 import { startFight } from 'src/app/fight/state/fight.actions';
 import { log } from 'src/app/utils/log';
+import { openTreasure } from 'src/app/reward/state/reward.actions';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -51,6 +52,15 @@ export class BoardComponent implements OnInit {
           opponentPosition: position,
         })
       );
+    } else if (tileType === 'T') {
+      this.store.dispatch(
+        openTreasure({
+          playerId: playerId as number,
+          treasurePosition: position,
+        })
+      );
+    } else {
+      console.error('No such tile type: ' + tileType);
     }
   }
 }

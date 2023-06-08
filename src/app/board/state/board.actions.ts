@@ -13,7 +13,7 @@ export const makeMove = createAction(
   props<{ position: number }>()
 );
 
-export const removeMonsterToken = createAction(
-  '[Board] Remove Monster Token',
+export const removeToken = createAction(
+  '[Board] Remove Token',
   props<{ position: number }>()
 );

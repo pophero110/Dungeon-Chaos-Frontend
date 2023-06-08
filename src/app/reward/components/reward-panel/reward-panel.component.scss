@@ -1,0 +1,50 @@
+:host {
+  width: 100%;
+}
+.rewardPanel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  // transition-timing-function: cubic-bezier(0.5, 1.5, 0.5, -0.5);
+
+  &__item {
+    margin-bottom: 24px;
+    &__token {
+      width: 150px;
+      height: 150px;
+      border: 2px white solid;
+      margin-bottom: 16px;
+    }
+    &__name {
+      margin-bottom: 16px;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: white;
+    }
+
+    &__description {
+      background-color: lightgray;
+      padding: 10px 24px;
+    }
+  }
+
+  &__actionMenu {
+    display: flex;
+    justify-content: space-between;
+    width: 230px;
+    &__action {
+      width: 110px;
+      text-align: center;
+      padding: 5px 16px;
+      background-color: whitesmoke;
+      border: 2px solid black;
+      cursor: pointer;
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+  }
+}
