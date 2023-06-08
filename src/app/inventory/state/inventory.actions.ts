@@ -118,3 +118,18 @@ export const removeItemFromInventoryError = createAction(
   '[Inventory] Remove Item From Inventory Error',
   props<{ error: unknown }>()
 );
+
+export const consumePotion = createAction(
+  '[Inventory] Consume Potion',
+  props<{ inventoryItemId: number }>()
+);
+
+export const consumePotionSuccess = createAction(
+  '[Inventory] Consume Potion Success',
+  props<{ inventoryState: InventoryState }>()
+);
+
+export const consumePotionError = createAction(
+  '[Inventory] Consume Potion Error',
+  props<{ error: unknown }>()
+);
