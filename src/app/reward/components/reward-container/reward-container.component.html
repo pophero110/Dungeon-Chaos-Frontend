@@ -1,0 +1,9 @@
+<div class="rewardContainer" *ngIf="rewardItemId$ | async">
+  <app-reward-panel
+    [items]="items$ | async"
+    [rewardItemId]="rewardItemId$ | async"
+    [treasurePosition]="treasurePosition$ | async"
+    [onTakeTreasureButtonClick]="onTakeTreasureButtonClick"
+    [ondiscardTreasureButtonClick]="ondiscardTreasureButtonClick"
+  ></app-reward-panel>
+</div>
