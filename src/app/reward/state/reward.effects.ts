@@ -13,7 +13,7 @@ import {
 import { RewardState } from './reward.reducer';
 import { catchError, concat, map, mergeMap, of } from 'rxjs';
 import { addItemToInventory } from 'src/app/inventory/state/inventory.actions';
-import { makeMove, removeToken } from 'src/app/board/state/board.actions';
+import { removeToken } from 'src/app/board/state/board.actions';
 
 @Injectable()
 export class RewardEffects {
@@ -53,8 +53,7 @@ export class RewardEffects {
       mergeMap(({ treasurePosition }) => {
         return concat(
           of(discardTreasureSuccess()),
-          of(removeToken({ position: treasurePosition })),
-          of(makeMove({ position: treasurePosition }))
+          of(removeToken({ position: treasurePosition }))
         );
       })
     )
