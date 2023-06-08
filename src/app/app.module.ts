@@ -25,6 +25,8 @@ import { RewardEffects } from './reward/state/reward.effects';
 import { ItemModule } from './item/item.module';
 import { ItemEffects } from './item/state/item.effects';
 import { itemReducer } from './item/state/item.reducer';
+import { MainMenuModule } from './mainMenu/main-menu.module';
+import { mainMenuReducer } from './mainMenu/state/main-menu.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +40,7 @@ import { itemReducer } from './item/state/item.reducer';
       inventory: inventoryReducer,
       reward: rewardReducer,
       item: itemReducer,
+      mainMenu: mainMenuReducer,
     }),
     EffectsModule.forRoot([
       BoardEffects,
@@ -56,6 +59,7 @@ import { itemReducer } from './item/state/item.reducer';
     InventoryModule,
     RewardModule,
     ItemModule,
+    MainMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
