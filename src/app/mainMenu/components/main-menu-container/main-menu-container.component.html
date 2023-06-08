@@ -1,0 +1,27 @@
+<div class="mainMenuContainer" *ngIf="isShown$ | async">
+  <div class="mainMenu">
+    <div class="mainMenu__logoContainer">
+      <div class="mainMenu__logo">Dungeon Chaos</div>
+    </div>
+    <div (click)="onStartGameButtonClick()" class="mainMenu__startGameButton">
+      Start Game
+    </div>
+    <footer>
+      <a href="https://github.com/pophero110" target="_blank">By Jeff Ou</a>
+    </footer>
+  </div>
+</div>
+
+<div class="mainMenuContainer" *ngIf="isGameOver$ | async">
+  <div class="mainMenu">
+    <div class="mainMenu__logoContainer">
+      <div class="mainMenu__logo">Game Over</div>
+    </div>
+    <div (click)="onRestartGameButtonClick()" class="mainMenu__startGameButton">
+      Restart Game
+    </div>
+    <footer>
+      <a href="https://github.com/pophero110" target="_blank">By Jeff Ou</a>
+    </footer>
+  </div>
+</div>
