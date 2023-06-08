@@ -8,10 +8,10 @@ export const getInventoryUrl = (inventoryId: number) =>
   `${environment.apiUrl}/api/inventories/${inventoryId}`;
 
 export const addItemToInventoryUrl = (inventoryId: number) =>
-  `${environment.apiUrl}/api/inventories/${inventoryId}`;
+  `${environment.apiUrl}/api/inventories/${inventoryId}/addItem`;
 
 export const removeItemFromInventoryUrl = (inventoryId: number) =>
-  `${environment.apiUrl}/api/inventories/${inventoryId}`;
+  `${environment.apiUrl}/api/inventories/${inventoryId}/removeItem`;
 
 export const equipWeaponUrl = (inventoryItemId: number) =>
   `${environment.apiUrl}/api/inventoryItems/${inventoryItemId}/equipWeapon`;

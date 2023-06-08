@@ -53,3 +53,8 @@ export const selectEquippedArmor = createSelector(
     );
   }
 );
+
+export const selectInventoryId = createSelector(
+  selectInventoryState,
+  (state) => state.id
+);

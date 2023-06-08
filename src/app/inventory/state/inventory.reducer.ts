@@ -115,6 +115,7 @@ export const inventoryReducer = createReducer(
     return { ...state };
   }),
   on(addItemToInventorySuccess, (state, { inventoryState }) => {
+    log('add item to inventory success');
     return {
       ...state,
       ...inventoryState,
@@ -125,6 +126,7 @@ export const inventoryReducer = createReducer(
     return { ...state };
   }),
   on(removeItemFromInventorySuccess, (state, { inventoryState }) => {
+    log('remove item from inventory success');
     return {
       ...state,
       ...inventoryState,
