@@ -1,0 +1,13 @@
+.characterContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

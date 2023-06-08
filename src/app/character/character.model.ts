@@ -10,4 +10,5 @@ export interface Character {
 export enum CharacterName {
   Warrior = 'Warrior',
   Rogue = 'Rogue',
+  Uncertainty = 'Uncertainty',
 }

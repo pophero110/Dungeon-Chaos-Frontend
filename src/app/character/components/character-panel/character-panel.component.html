@@ -7,6 +7,9 @@
       <app-rogue-token
         *ngIf="selectedCharacter?.name === characterName.Rogue"
       ></app-rogue-token>
+      <app-uncertainty-token
+        *ngIf="!selectedCharacter?.name"
+      ></app-uncertainty-token>
     </div>
 
     <ul>

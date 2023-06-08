@@ -1,7 +1,10 @@
 <form (ngSubmit)="onSubmit()">
   <div>
-    <label for="character">Select a Character:</label>
+    <label class="characterForm__label" for="character"
+      >Select a Character:</label
+    >
     <select
+      class="characterForm__selection"
       id="character"
       name="character"
       [(ngModel)]="selectedCharacterId"
@@ -14,5 +17,7 @@
       </option>
     </select>
   </div>
-  <button type="submit" [disabled]="!selectedCharacterId">Submit</button>
+  <button type="submit" [disabled]="!selectedCharacterId">
+    Create Character
+  </button>
 </form>

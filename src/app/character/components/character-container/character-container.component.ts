@@ -7,7 +7,6 @@ import {
   selectCharacters,
   selectSelectedCharacter,
 } from '../../state/character.selectors';
-import { log } from 'src/app/utils/log';
 
 @Component({
   selector: 'app-character-container',
@@ -19,7 +18,6 @@ export class CharacterContainerComponent implements OnInit {
   characters$ = this.store.select(selectCharacters);
   selectedCharacter$ = this.store.select(selectSelectedCharacter);
   isPlayerCreated$ = this.store.select(selectIsPlayerCreated);
-
   constructor(private store: Store) {}
 
   ngOnInit(): void {
