@@ -7,6 +7,7 @@ import {
   selectInventoryItems,
 } from '../../state/inventory.selelctors';
 import {
+  consumePotion,
   equipArmor,
   equipWeapon,
   hideItemPanel,
@@ -43,11 +44,11 @@ export class InventoryContainerComponent {
     this.store.dispatch(hideItemPanel());
   }
 
-  onItemEquipButtonClick(inventoryItem: InventoryItem | null) {
-    if (inventoryItem === null) {
-      console.error('inventory item is null');
-      return;
-    }
+  onConsumeButtonClick(inventoryItem: InventoryItem) {
+    this.store.dispatch(consumePotion({ inventoryItemId: inventoryItem.id }));
+  }
+
+  onItemEquipButtonClick(inventoryItem: InventoryItem) {
     if (inventoryItem.item.equipmentType === EquipmentType.WEAPON) {
       this.store.dispatch(equipWeapon({ inventoryItemId: inventoryItem.id }));
     } else if (inventoryItem.item.equipmentType === EquipmentType.ARMOR) {
@@ -58,11 +59,7 @@ export class InventoryContainerComponent {
     this.store.dispatch(hideItemPanel());
   }
 
-  onItemUnequipButtonClick(inventoryItem: InventoryItem | null) {
-    if (inventoryItem === null) {
-      console.error('inventory item is null');
-      return;
-    }
+  onItemUnequipButtonClick(inventoryItem: InventoryItem) {
     if (inventoryItem.item.equipmentType === EquipmentType.WEAPON) {
       this.store.dispatch(unequipWeapon({ inventoryItemId: inventoryItem.id }));
     } else if (inventoryItem.item.equipmentType === EquipmentType.ARMOR) {

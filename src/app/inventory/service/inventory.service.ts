@@ -1,18 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { equipWeapon, equipArmor } from '../state/inventory.actions';
 import {
   addItemToInventoryUrl,
   equipWeaponUrl,
   removeItemFromInventoryUrl,
   unequipArmorUrl,
   unequipWeaponUrl,
+  consumePotionUrl,
+  equipArmorUrl,
 } from '../../utils/api/inventoryApi';
-import {
-  InventoryRequest,
-  getInventoryUrl,
-} from '../../utils/api/inventoryApi';
-import { equipArmorUrl } from '../../utils/api/inventoryApi';
+import { getInventoryUrl } from '../../utils/api/inventoryApi';
 
 @Injectable({
   providedIn: 'root',
@@ -46,5 +43,9 @@ export class InventoryService {
 
   public unequipArmor(inventoryItemId: number) {
     return this.http.put(unequipArmorUrl(inventoryItemId), {});
+  }
+
+  public consumePotion(inventoryItemId: number) {
+    return this.http.put(consumePotionUrl(inventoryItemId), {});
   }
 }

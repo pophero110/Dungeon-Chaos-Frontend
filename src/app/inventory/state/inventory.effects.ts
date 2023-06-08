@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
   addItemToInventorySuccess,
+  consumePotion,
+  consumePotionError,
+  consumePotionSuccess,
   equipArmor,
   equipArmorError,
   equipArmorSuccess,
@@ -172,6 +175,31 @@ export class InventoryEffects {
       })
     )
   );
+
+  consumePotion$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(consumePotion),
+      mergeMap(({ inventoryItemId }) => {
+        return this.inventoryService.consumePotion(inventoryItemId).pipe(
+          mergeMap((response) => {
+            const playerState = response as PlayerState;
+            const playerInventory = response as { inventory: InventoryState };
+            return concat(
+              of(
+                consumePotionSuccess({
+                  inventoryState: playerInventory.inventory,
+                })
+              ),
+              of(hideItemPanel()),
+              of(updatePlayer({ playerState }))
+            );
+          }),
+          catchError((error) => of(consumePotionError({ error })))
+        );
+      })
+    )
+  );
+
   private inventoryId!: number;
   private inventoryId$ = this.store.select(selectInventoryId);
   constructor(

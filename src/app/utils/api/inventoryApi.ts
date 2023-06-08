@@ -24,3 +24,6 @@ export const equipArmorUrl = (inventoryItemId: number) =>
 
 export const unequipArmorUrl = (inventoryItemId: number) =>
   `${environment.apiUrl}/api/inventoryItems/${inventoryItemId}/unequipArmor`;
+
+export const consumePotionUrl = (inventoryItemId: number) =>
+  `${environment.apiUrl}/api/inventoryItems/${inventoryItemId}/consumePotion`;

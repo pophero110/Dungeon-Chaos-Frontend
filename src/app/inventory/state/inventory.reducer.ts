@@ -3,6 +3,7 @@ import { InventoryItem } from '../inventory.model';
 import {
   addItemToInventoryError,
   addItemToInventorySuccess,
+  consumePotionSuccess,
   equipArmorError,
   equipArmorSuccess,
   equipWeaponError,
@@ -20,6 +21,7 @@ import {
   unequipWeaponSuccess,
 } from './inventory.actions';
 import { log } from 'src/app/utils/log';
+import { consumePotionError } from './inventory.actions';
 
 export interface InventoryState {
   id: number;
@@ -134,6 +136,17 @@ export const inventoryReducer = createReducer(
   }),
   on(removeItemFromInventoryError, (state, { error }) => {
     console.error('remove item to inventory error', error);
+    return { ...state };
+  }),
+  on(consumePotionSuccess, (state, { inventoryState }) => {
+    log('consume potion success');
+    return {
+      ...state,
+      ...inventoryState,
+    };
+  }),
+  on(consumePotionError, (state, { error }) => {
+    log('consume potion error', error);
     return { ...state };
   })
 );
