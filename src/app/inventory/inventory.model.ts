@@ -1,6 +1,6 @@
 export enum ItemType {
-  EQUIPMENT,
-  POTION,
+  EQUIPMENT = 'EQUIPMENT',
+  POTION = 'POTION',
 }
 
 export interface Item extends Equipment, Potion {
@@ -17,8 +17,8 @@ export interface InventoryItem {
 }
 
 export enum EquipmentType {
-  WEAPON,
-  ARMOR,
+  WEAPON = 'WEAPON',
+  ARMOR = 'ARMOR',
 }
 
 export interface Equipment {
