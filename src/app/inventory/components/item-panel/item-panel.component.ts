@@ -11,12 +11,12 @@ export class ItemPanelComponent {
   itemType = ItemType;
   @Input() selectedInventoryItem!: InventoryItem | null;
   @Input() onItemPanelCloseButtonClick!: () => void;
-  @Input() onItemEquipButtonClick!: (
-    inventoryItem: InventoryItem | null
-  ) => void;
-  @Input() onItemUnequipButtonClick!: (
-    inventoryItem: InventoryItem | null
-  ) => void;
+  @Input() onItemEquipButtonClick!: (inventoryItem: InventoryItem) => void;
+  @Input() onItemUnequipButtonClick!: (inventoryItem: InventoryItem) => void;
+  @Input() onItemDiscardButtonClick!: (inventoryItem: InventoryItem) => void;
+  @Input() onConsumeButtonClick!: (inventoryItem: InventoryItem) => void;
+
+  showDiscardButton = false;
 
   constructor(private store: Store) {}
 }

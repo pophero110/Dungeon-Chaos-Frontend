@@ -78,16 +78,11 @@
       <div>Unequip</div>
     </div>
     <div
+      (click)="onConsumeButtonClick(selectedInventoryItem)"
       class="inventory__itemPanel__itemActionMenu__action"
       *ngIf="selectedInventoryItem?.item?.type === itemType.POTION"
     >
-      <div>Drink</div>
-    </div>
-    <div
-      class="inventory__itemPanel__itemActionMenu__action inventory__itemPanel__itemActionMenu__action-close"
-      (click)="onItemPanelCloseButtonClick()"
-    >
-      Close
+      <div>Consume</div>
     </div>
   </div>
 </div>
