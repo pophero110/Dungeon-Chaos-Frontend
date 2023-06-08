@@ -18,7 +18,7 @@ export class TileComponent {
     position: number,
     playerId: number | null
   ) => void;
-
+  @Input() clickSound!: HTMLAudioElement;
   //TODO: refactor playerId - using server side authentication
   @Input() playerId!: number | null;
 

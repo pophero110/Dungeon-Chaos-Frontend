@@ -17,6 +17,7 @@ import { catchError, concat, delay, mergeMap, of } from 'rxjs';
 import {
   CurrentTurn,
   FightResult,
+  LOST_FIGHT_DURATION,
   OPPONENT_TURN_DURATION,
 } from '../fight.model';
 import { playerDie, updatePlayer } from 'src/app/player/state/player.actions';
@@ -25,6 +26,7 @@ import { opponentPerformActionError, playerWinFight } from './fight.actions';
 import { log, logStart } from 'src/app/utils/log';
 import { FightState } from './fight.reducer';
 import { PlayerState } from 'src/app/player/state/player.reducer';
+import { showGameOver } from 'src/app/mainMenu/state/main-menu.actions';
 
 @Injectable()
 export class FightEffects {
@@ -63,7 +65,14 @@ export class FightEffects {
             const fightState = response as FightState;
             log('opponent perform action', fightState.opponentActionType);
             if (fightState.fightResult === FightResult.VICTORY_OPPONENT) {
-              return concat(of(playerLoseFight()));
+              return concat(
+                of(playerLoseFight()),
+                of(
+                  updatePlayer({
+                    playerState: fightState.player as PlayerState,
+                  })
+                )
+              );
             } else {
               const successAction = opponentPerformActionSuccess({
                 fightState: { ...fightState },
@@ -143,7 +152,12 @@ export class FightEffects {
       ofType(playerLoseFight),
       mergeMap(() => {
         log('player lose fight');
-        return concat(of(endFight()), of(playerDie()), of(fetchBoard()));
+        return concat(
+          of(endFight()),
+          of(playerDie()),
+          of(fetchBoard()),
+          of(showGameOver())
+        ).pipe(delay(LOST_FIGHT_DURATION));
       }),
       catchError(() => of(playerPerformActionError()))
     )

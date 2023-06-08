@@ -20,6 +20,7 @@ import { isSurroundingTile } from '../../board.utils';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
+  clickSound!: HTMLAudioElement;
   board$ = this.store.select(selectBoard);
   playerId$ = this.store.select(selectPlayerId);
   currentPlayerPosition!: number;
@@ -38,6 +39,7 @@ export class BoardComponent implements OnInit {
     this.currentPlayerPosition$.subscribe((currentPlayerPosition) => {
       this.currentPlayerPosition = currentPlayerPosition;
     });
+    this.clickSound = new Audio('/assets/music/click.wav');
   }
 
   ngOnInit(): void {
@@ -45,9 +47,10 @@ export class BoardComponent implements OnInit {
   }
 
   onTileClick(tileType: string, position: number, playerId: number | null) {
-    log('tile click', { tileType, position });
+    log('tile click', { tileType, position }, this.clickSound);
 
-    if (['P', 'S', 'E'].includes(tileType)) {
+    if (['P', 'S'].includes(tileType)) {
+      this.clickSound.play();
       this.store.dispatch(makeMove({ position }));
       return;
     }
@@ -82,8 +85,12 @@ export class BoardComponent implements OnInit {
         })
       );
       return;
-    } else {
-      console.error('No such tile type: ' + tileType);
     }
+
+    if (tileType === 'E') {
+      this.store.dispatch(fetchBoard());
+    }
+
+    console.error('No action on tile type: ' + tileType);
   }
 }

@@ -1,0 +1,24 @@
+@import "../../../../variables.scss";
+
+.characterForm__selection {
+  margin-bottom: 32px;
+}
+.characterForm__label {
+  font-size: 16px;
+  font-family: $font-fira;
+  margin-right: 10px;
+}
+button {
+  // transform: translateX(110%);
+  font-family: $font-creepster;
+  font-size: 40px;
+  border-radius: 4px;
+  padding: 12px 24px;
+  cursor: pointer;
+  color: black;
+  transition: ease-out 0.4s;
+  &:hover {
+    background-color: red;
+    color: white;
+  }
+}

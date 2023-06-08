@@ -1,11 +1,14 @@
 <main>
+  <app-main-menu-container
+    style="z-index: 300; display: none"
+  ></app-main-menu-container>
+  <app-character-container style="z-index: 200"></app-character-container>
   <section style="position: relative">
     <app-board></app-board>
     <app-reward-container></app-reward-container>
   </section>
 
   <section style="height: 644px; padding: 55px 20px">
-    <app-character-container></app-character-container>
     <app-player-container></app-player-container>
     <app-inventory-container></app-inventory-container>
   </section>

@@ -37,3 +37,4 @@ export enum ActionType {
 }
 
 export const OPPONENT_TURN_DURATION = 1000; // 1 second
+export const LOST_FIGHT_DURATION = 2000;

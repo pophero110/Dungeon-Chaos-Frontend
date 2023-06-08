@@ -1,4 +1,4 @@
-<ng-container *ngIf="!(isPlayerCreated$ | async)">
+<div class="characterContainer" *ngIf="!(isPlayerCreated$ | async)">
   <app-character-panel
     [selectedCharacter]="selectedCharacter$ | async"
   ></app-character-panel>
@@ -7,4 +7,4 @@
     [onCharacterSelection]="onCharacterSelection"
     [onSubmit]="onSubmit"
   ></app-character-form>
-</ng-container>
+</div>

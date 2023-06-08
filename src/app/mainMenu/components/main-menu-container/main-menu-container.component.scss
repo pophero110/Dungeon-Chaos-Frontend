@@ -1,0 +1,54 @@
+@import "../../../../variables.scss";
+.mainMenuContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  top: 0;
+  left: 0;
+}
+
+.mainMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 100%;
+  &__logoContainer {
+    width: 100%;
+    margin-bottom: 100px;
+  }
+  &__logo {
+    text-align: center;
+    font-size: 200px;
+    line-height: 90%;
+    font-family: $font-creepster;
+    width: 100%;
+    text-shadow: red 10px 5px;
+  }
+  &__characterForm {
+    padding: 4px;
+  }
+
+  &__startGameButton {
+    // transform: translateX(110%);
+    font-family: $font-creepster;
+    font-size: 50px;
+    border-radius: 4px;
+    padding: 12px 24px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 red;
+    transition: ease-out 0.4s;
+    &:hover {
+      box-shadow: inset 0 0 0 50px red;
+      color: white;
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 20px;
+}
