@@ -37,13 +37,25 @@
     align-items: center;
     width: 100%;
     &__action {
+      width: 100px;
       text-align: center;
-      padding: 5px 25px;
+      padding: 5px 0;
       background-color: whitesmoke;
       border: 2px solid black;
       cursor: pointer;
       &:hover {
         background-color: lightgray;
+      }
+
+      &-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        &:after {
+          display: inline-block;
+          content: "\00d7"; /* This will render the 'X' */
+        }
       }
     }
   }
