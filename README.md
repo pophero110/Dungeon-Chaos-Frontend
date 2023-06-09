@@ -5,10 +5,10 @@
 
 # Technologies
 
-**Angular**  
-**Ngrx**  
-**Scss**  
-**Jasmine**
+- Angular
+- Ngrx
+- Scss
+- Jasmine
 
 # Featured Folder Structure
 
