@@ -5,10 +5,14 @@
 
 # Technologies
 
-**Angular**
-**Ngrx**
-**Scss**
+**Angular**  
+**Ngrx**  
+**Scss**  
 **Jasmine**
+
+# Featured Folder Structure
+
+![featured-folder](resource/featured-folder-structure.png)
 
 # Game Screenshot
 
