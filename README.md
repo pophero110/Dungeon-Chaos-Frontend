@@ -3,12 +3,25 @@
 **Developer**: Jeff Ou
 **Description**: A single-player board-like game with turn-based fighting that is set within a grid of blocks, players strategically navigate through the dungeon, uncovering hidden pathways, encountering dangerous monsters, and collecting valuable loot
 
-# Overview
-
 # Technologies
 
+**Angular**
+**Ngrx**
+**Scss**
+**Jasmine**
+
+# Game Screenshot
+
+![main-menu](./resource/main-menu.png)
+![character-form](./resource/character-form.png)
+![board](resource/board.png)
+![inventory](resource/inventory.png)
+![dungeon](resource/dungeon.png)
+
+# Run the application
+
 <details>
-<summary>Run the application</summary>
+<summary>Click to expand</summary>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
 
