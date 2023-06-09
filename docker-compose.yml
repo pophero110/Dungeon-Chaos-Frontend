@@ -1,0 +1,6 @@
+version: "3"
+services:
+  frontend:
+    image: dungeon-chaos-frontend:latest
+    ports:
+      - 80:80
