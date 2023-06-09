@@ -7,7 +7,7 @@ import { fetchBoardUrl } from '../../utils/api/boardApi';
 export class BoardService {
   constructor(private http: HttpClient) {}
 
-  fetchBoard() {
-    return this.http.get(fetchBoardUrl, {});
+  fetchBoard(playerId: number) {
+    return this.http.post(fetchBoardUrl, { playerId });
   }
 }

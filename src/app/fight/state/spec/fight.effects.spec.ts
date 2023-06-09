@@ -21,13 +21,13 @@ import { ActionType, CurrentTurn, FightResult } from '../../fight.model';
 import { playerWinFight } from '../fight.actions';
 import { playerPerformActionError } from '../fight.actions';
 import { updatePlayer } from 'src/app/player/state/player.actions';
+import { Store } from '@ngrx/store';
 
 //TODO: separate store and effect
 describe('FightEffects', () => {
   let actions$: Observable<unknown>;
   let effects: FightEffects;
   let fightService: jasmine.SpyObj<FightService>;
-
   beforeEach(() => {
     fightService = jasmine.createSpyObj('FightService', [
       'startFight',
@@ -42,22 +42,22 @@ describe('FightEffects', () => {
         { provide: FightService, useValue: fightService },
       ],
     });
+
     effects = TestBed.inject(FightEffects);
   });
 
   describe('startFight$', () => {
     it('should dispatch startFightSuccess', () => {
-      const monsterId = 123;
       const opponentPosition = 456;
       const fightState = fakeFightState;
       fightState.currentTurn = CurrentTurn.PLAYER;
       const playerId = 1;
-      const fightRequest: FightRequest = { playerId, monsterId };
+      const fightRequest: FightRequest = { playerId };
 
       const response = { ...fightState };
       fightService.startFight.and.returnValue(of(response));
 
-      actions$ = of(startFight({ playerId, monsterId, opponentPosition }));
+      actions$ = of(startFight({ playerId, opponentPosition }));
       effects.startFight$.subscribe((result) => {
         expect(result.type).toEqual(startFightSuccess.type);
         expect(fightService.startFight).toHaveBeenCalledWith(fightRequest);
@@ -65,9 +65,8 @@ describe('FightEffects', () => {
     });
 
     it('should dispatch startFightSuccess and opponentPerformAction actions', fakeAsync(() => {
-      const monsterId = 123;
       const playerId = 1;
-      const fightRequest: FightRequest = { playerId, monsterId };
+      const fightRequest: FightRequest = { playerId };
       const fightState = fakeFightState;
       fightState.currentTurn = CurrentTurn.OPPONENT;
       const opponentPosition = 456;
@@ -75,7 +74,7 @@ describe('FightEffects', () => {
       const response = { ...fightState };
       fightService.startFight.and.returnValue(of(response));
 
-      actions$ = of(startFight({ playerId, monsterId, opponentPosition }));
+      actions$ = of(startFight({ playerId, opponentPosition }));
 
       effects.startFight$.subscribe((result) => {
         expect(result).toBeTruthy();
@@ -91,15 +90,14 @@ describe('FightEffects', () => {
 
     it('should dispatch startFightError on service error', (done) => {
       const opponentPosition = 456;
-      const monsterId = 1;
       const playerId = 1;
-      const fightREquest: FightRequest = { monsterId, playerId };
+      const fightREquest: FightRequest = { playerId };
 
       fightService.startFight.and.returnValue(
         throwError('Failed to start fight')
       );
 
-      actions$ = of(startFight({ playerId, monsterId, opponentPosition }));
+      actions$ = of(startFight({ playerId, opponentPosition }));
       effects.startFight$.subscribe((result) => {
         expect(result).toEqual(startFightError());
         expect(fightService.startFight).toHaveBeenCalledWith(fightREquest);

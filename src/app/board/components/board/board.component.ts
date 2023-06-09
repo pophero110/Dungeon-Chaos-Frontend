@@ -1,25 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   selectBoard,
   selectCurrentPlayerPosition,
 } from '../../state/board.selectors';
-import { fetchBoard, makeMove } from '../../state/board.actions';
+import { makeMove } from '../../state/board.actions';
 import {
   selectPlayerCharacterName,
   selectPlayerId,
+  selectPlayerIdentityKeyAndDifficulty,
 } from 'src/app/player/state/player.selectors';
 import { distinctUntilChanged } from 'rxjs';
 import { startFight } from 'src/app/fight/state/fight.actions';
 import { log } from 'src/app/utils/log';
 import { openTreasure } from 'src/app/reward/state/reward.actions';
 import { isSurroundingTile } from '../../board.utils';
+import { enterPortal } from 'src/app/player/state/player.actions';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent {
   clickSound!: HTMLAudioElement;
   board$ = this.store.select(selectBoard);
   playerId$ = this.store.select(selectPlayerId);
@@ -31,6 +33,10 @@ export class BoardComponent implements OnInit {
     .select(selectPlayerCharacterName)
     .pipe(distinctUntilChanged());
 
+  playerIdentityKeyAndDifficulty = this.store.select(
+    selectPlayerIdentityKeyAndDifficulty
+  );
+
   trackByPositionAndTileType(position: number, tileType: string): string {
     return position + tileType;
   }
@@ -40,10 +46,6 @@ export class BoardComponent implements OnInit {
       this.currentPlayerPosition = currentPlayerPosition;
     });
     this.clickSound = new Audio('/assets/music/click.wav');
-  }
-
-  ngOnInit(): void {
-    this.store.dispatch(fetchBoard());
   }
 
   onTileClick(tileType: string, position: number, playerId: number | null) {
@@ -70,7 +72,6 @@ export class BoardComponent implements OnInit {
       this.store.dispatch(
         startFight({
           playerId: playerId as number,
-          monsterId: 1,
           opponentPosition: position,
         })
       );
@@ -88,7 +89,7 @@ export class BoardComponent implements OnInit {
     }
 
     if (tileType === 'E') {
-      this.store.dispatch(fetchBoard());
+      this.store.dispatch(enterPortal({ playerId: playerId as number }));
     }
 
     console.error('No action on tile type: ' + tileType);

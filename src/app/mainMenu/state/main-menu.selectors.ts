@@ -8,11 +8,6 @@ export const selectIsMainMenuShown = createSelector(
   (state) => state.isMainMenuShown
 );
 
-export const selectIsCharacterFormShown = createSelector(
-  selectMainMenuState,
-  (state) => state.isCharacterFormShown
-);
-
 export const selectIsGameOver = createSelector(
   selectMainMenuState,
   (state) => state.isGameOver

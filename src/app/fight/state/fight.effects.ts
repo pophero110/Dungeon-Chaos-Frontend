@@ -21,13 +21,12 @@ import {
   OPPONENT_TURN_DURATION,
 } from '../fight.model';
 import { playerDie, updatePlayer } from 'src/app/player/state/player.actions';
-import { fetchBoard, removeToken } from 'src/app/board/state/board.actions';
+import { removeToken } from 'src/app/board/state/board.actions';
 import { opponentPerformActionError, playerWinFight } from './fight.actions';
 import { log, logStart } from 'src/app/utils/log';
 import { FightState } from './fight.reducer';
 import { PlayerState } from 'src/app/player/state/player.reducer';
 import { showGameOver } from 'src/app/mainMenu/state/main-menu.actions';
-
 @Injectable()
 export class FightEffects {
   fightId!: number;
@@ -35,8 +34,8 @@ export class FightEffects {
   startFight$ = createEffect(() =>
     this.actions$.pipe(
       ofType(startFight),
-      mergeMap(({ monsterId, opponentPosition, playerId }) =>
-        this.fightService.startFight({ playerId, monsterId }).pipe(
+      mergeMap(({ opponentPosition, playerId }) =>
+        this.fightService.startFight({ playerId }).pipe(
           mergeMap((response) => {
             const fightState = response as FightState;
             logStart('start fight', response);
@@ -63,13 +62,14 @@ export class FightEffects {
         this.fightService.opponentPerformAction(this.fightId).pipe(
           mergeMap((response) => {
             const fightState = response as FightState;
+            const playerState = fightState.player as PlayerState;
             log('opponent perform action', fightState.opponentActionType);
             if (fightState.fightResult === FightResult.VICTORY_OPPONENT) {
               return concat(
-                of(playerLoseFight()),
+                of(playerLoseFight({ playerId: playerState.id })),
                 of(
                   updatePlayer({
-                    playerState: fightState.player as PlayerState,
+                    playerState,
                   })
                 )
               );
@@ -80,7 +80,7 @@ export class FightEffects {
               return concat(
                 of(
                   updatePlayer({
-                    playerState: fightState.player as PlayerState,
+                    playerState,
                   })
                 ).pipe(delay(OPPONENT_TURN_DURATION)),
                 of(successAction).pipe(delay(OPPONENT_TURN_DURATION))
@@ -152,12 +152,9 @@ export class FightEffects {
       ofType(playerLoseFight),
       mergeMap(() => {
         log('player lose fight');
-        return concat(
-          of(endFight()),
-          of(playerDie()),
-          of(fetchBoard()),
-          of(showGameOver())
-        ).pipe(delay(LOST_FIGHT_DURATION));
+        return concat(of(endFight()), of(playerDie()), of(showGameOver())).pipe(
+          delay(LOST_FIGHT_DURATION)
+        );
       }),
       catchError(() => of(playerPerformActionError()))
     )

@@ -18,6 +18,8 @@ describe('FightSceneComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FightSceneComponent);
     component = fixture.componentInstance;
+    component.opponent = fakeOpponent;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -47,10 +49,11 @@ describe('FightSceneComponent', () => {
     );
   });
 
-  it('should render player panel with player data', () => {
+  it('should render player panel', () => {
     const playerPanelElement = fixture.debugElement.query(
-      By.css('.fightScene__player app-player-panel')
+      By.css('app-player-panel')
     );
+    console.log(playerPanelElement);
     expect(playerPanelElement).toBeTruthy();
   });
 

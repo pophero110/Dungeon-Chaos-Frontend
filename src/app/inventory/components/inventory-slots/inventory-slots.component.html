@@ -5,15 +5,9 @@
       class="inventorySlots__slot"
     >
       <!-- TODO: Refactor by creating a token selection component -->
-      <ng-container [ngSwitch]="inventoryItem.item.id">
-        <app-plain-sword-token *ngSwitchCase="1"></app-plain-sword-token>
-        <app-round-shield-token *ngSwitchCase="2"></app-round-shield-token>
-        <app-health-potion-token *ngSwitchCase="3"></app-health-potion-token>
-        <app-broad-sword-token *ngSwitchCase="4"></app-broad-sword-token>
-        <app-viking-shield-token *ngSwitchCase="5"></app-viking-shield-token>
-        <app-plain-dagger-token *ngSwitchCase="6"></app-plain-dagger-token>
-        <app-bowie-knfie-token *ngSwitchCase="7"></app-bowie-knfie-token>
-      </ng-container>
+      <app-token-displayer
+        [itemId]="inventoryItem.item.id"
+      ></app-token-displayer>
       <p
         *ngIf="inventoryItem.item.potionType"
         class="inventorySlots__slot__quantityIndicator w3-badge w3-white"

@@ -1,0 +1,31 @@
+@import "../../../../variables.scss";
+
+form {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-fira;
+
+  button {
+    font-family: $font-creepster;
+    font-size: 40px;
+    border-radius: 4px;
+    padding: 12px 24px;
+    cursor: pointer;
+    color: black;
+    transition: ease-out 0.4s;
+    &:hover {
+      background-color: red;
+      color: white;
+    }
+  }
+  input {
+    margin-bottom: 12px;
+    padding: 6px 0px;
+    font-size: 24px;
+  }
+}
+
+div {
+  text-align: center;
+  font-size: 3rem;
+}

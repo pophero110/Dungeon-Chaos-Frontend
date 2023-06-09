@@ -1,13 +1,7 @@
 <div *ngIf="rewardItemId && items" class="rewardPanel">
   <ng-container [ngSwitch]="rewardItemId">
     <div class="rewardPanel__item__token">
-      <app-plain-sword-token *ngSwitchCase="1"></app-plain-sword-token>
-      <app-round-shield-token *ngSwitchCase="2"></app-round-shield-token>
-      <app-health-potion-token *ngSwitchCase="3"></app-health-potion-token>
-      <app-broad-sword-token *ngSwitchCase="4"></app-broad-sword-token>
-      <app-viking-shield-token *ngSwitchCase="5"></app-viking-shield-token>
-      <app-plain-dagger-token *ngSwitchCase="6"></app-plain-dagger-token>
-      <app-bowie-knfie-token *ngSwitchCase="7"></app-bowie-knfie-token>
+      <app-token-displayer [itemId]="rewardItemId"></app-token-displayer>
     </div>
   </ng-container>
   <!-- array is zero-indexed but items are one-indexed so minus one here  -->
@@ -22,7 +16,7 @@
       <p>Defense: {{ rewardItem.defense }}</p>
       <p>Speed: {{ rewardItem.speed }}</p>
       <p>Rarity: {{ rewardItem.rarity }}</p>
-      <p>Special Ability: {{ rewardItem.specialAbility || "none" }}</p>
+      <!-- <p>Special Ability: {{ rewardItem.specialAbility || "none" }}</p> -->
     </div>
     <div
       class="rewardPanel__item__description"

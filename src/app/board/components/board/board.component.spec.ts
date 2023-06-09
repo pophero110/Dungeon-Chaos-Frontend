@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { BoardComponent } from './board.component';
-import { fetchBoard, makeMove } from '../../state/board.actions';
+import { makeMove } from '../../state/board.actions';
 import {
   selectBoard,
   selectCurrentPlayerPosition,
@@ -66,12 +66,6 @@ describe('BoardComponent', () => {
     expect(tileElements.length).toBe(numberOfTiles);
   });
 
-  it('should dispatch fetchBoard action on ngOnInit', () => {
-    spyOn(store, 'dispatch');
-    component.ngOnInit();
-    expect(store.dispatch).toHaveBeenCalledWith(fetchBoard());
-  });
-
   it('should dispatch makeMove action when tileType is P', () => {
     spyOn(store, 'dispatch');
     const tileType = 'P';
@@ -83,13 +77,14 @@ describe('BoardComponent', () => {
 
   it('should dispatch startFight action when tileType is M', () => {
     spyOn(store, 'dispatch');
+    component.currentPlayerPosition = 1;
     const tileType = 'M';
     const position = 2;
-    const monsterId = 1;
     const playerId = 1;
+    console.log(component.currentPlayerPosition);
     component.onTileClick(tileType, position, playerId);
     expect(store.dispatch).toHaveBeenCalledWith(
-      startFight({ playerId, monsterId, opponentPosition: position })
+      startFight({ playerId, opponentPosition: position })
     );
   });
 });

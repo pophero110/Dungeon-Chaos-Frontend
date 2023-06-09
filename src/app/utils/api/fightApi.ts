@@ -2,7 +2,6 @@ import { environment } from 'src/environment';
 
 export interface FightRequest {
   playerId: number;
-  monsterId: number;
 }
 
 export const startFightUlr = `${environment.apiUrl}/api/fights/start`;
