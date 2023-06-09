@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080',
+  apiUrl: process.env['BACKEND_HOST'] || 'http://localhost:8080',
 };
+// https://dungeon-chaos-backend.herokuapp.com
