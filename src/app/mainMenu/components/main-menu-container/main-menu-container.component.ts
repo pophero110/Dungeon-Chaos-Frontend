@@ -18,6 +18,7 @@ export class MainMenuContainerComponent {
   audio!: HTMLAudioElement;
   constructor(private store: Store) {
     this.audio = new Audio('/assets/music/mainMenu.mp3');
+    this.audio.loop = true;
   }
 
   onStartGameButtonClick() {
@@ -27,6 +28,5 @@ export class MainMenuContainerComponent {
 
   onRestartGameButtonClick() {
     this.store.dispatch(hideGameOver());
-    this.audio.play();
   }
 }

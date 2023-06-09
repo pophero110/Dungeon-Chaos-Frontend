@@ -36,6 +36,8 @@ export const fakePlayerState: PlayerState = {
   speed: 30,
   goldCoin: 0,
   isCreated: true,
+  identityKey: '123123',
+  difficulty: 1,
 };
 
 export const fakeOpponent: Opponent = {
@@ -64,6 +66,8 @@ const fakePlayer: Player = {
   defense: 20,
   speed: 30,
   goldCoin: 0,
+  difficulty: 1,
+  identityKey: '123123',
 };
 
 export const fakeFightState: FightState = {

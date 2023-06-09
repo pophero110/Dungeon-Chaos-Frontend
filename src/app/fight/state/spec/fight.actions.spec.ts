@@ -38,12 +38,10 @@ describe('Fight Actions', () => {
   describe('startFight', () => {
     it('should create the action with the provided monster ID and opponent position', () => {
       const playerId = 1;
-      const monsterId = 123;
       const opponentPosition = 456;
-      const action = startFight({ playerId, monsterId, opponentPosition });
+      const action = startFight({ playerId, opponentPosition });
       expect(action).toEqual({
         type: '[Fight] Start Fight',
-        monsterId,
         opponentPosition,
         playerId,
       });
@@ -120,8 +118,11 @@ describe('Fight Actions', () => {
 
   describe('playerLoseFight', () => {
     it('should create the action without any payload', () => {
-      const action = playerLoseFight();
-      expect(action).toEqual({ type: '[Fight] Player Lose Fight' });
+      const action = playerLoseFight({ playerId: 1 });
+      expect(action).toEqual({
+        type: '[Fight] Player Lose Fight',
+        playerId: 1,
+      });
     });
   });
 });

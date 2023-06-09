@@ -32,7 +32,7 @@ describe('FightService', () => {
 
   describe('startFight', () => {
     it('should make a POST request to startFightUrl with the provided fight request', () => {
-      const fightRequest: FightRequest = { monsterId: 1, playerId: 1 };
+      const fightRequest: FightRequest = { playerId: 1 };
       service.startFight(fightRequest).subscribe();
 
       const req = httpMock.expectOne(startFightUlr);

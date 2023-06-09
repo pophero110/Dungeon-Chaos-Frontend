@@ -8,13 +8,11 @@ import {
 
 export interface MainMenuState {
   isMainMenuShown: boolean;
-  isCharacterFormShown: boolean;
   isGameOver: boolean;
 }
 
 const initialState: MainMenuState = {
   isMainMenuShown: true,
-  isCharacterFormShown: false,
   isGameOver: false,
 };
 

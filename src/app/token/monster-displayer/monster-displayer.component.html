@@ -1,0 +1,7 @@
+<ng-container [ngSwitch]="monsterName">
+  <app-golblin-token *ngSwitchCase="'Goblin'"></app-golblin-token>
+  <app-bad-gnome *ngSwitchCase="'Bad Gnome'"></app-bad-gnome>
+  <app-zombie *ngSwitchCase="'Undead'"></app-zombie>
+  <app-troll *ngSwitchCase="'Troll'"></app-troll>
+  <app-dragon *ngSwitchCase="'Dragon'"></app-dragon>
+</ng-container>

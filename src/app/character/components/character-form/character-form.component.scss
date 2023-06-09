@@ -1,5 +1,11 @@
 @import "../../../../variables.scss";
 
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .characterForm__selection {
   margin-bottom: 32px;
 }
@@ -9,7 +15,6 @@
   margin-right: 10px;
 }
 button {
-  // transform: translateX(110%);
   font-family: $font-creepster;
   font-size: 40px;
   border-radius: 4px;

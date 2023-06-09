@@ -14,14 +14,13 @@ import {
   findPositionOfStartingPoint,
   hideTilesExceptTilesSurroundingStartTile,
 } from '../board.utils';
-
 @Injectable()
 export class BoardEffects {
   fetchBoard$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fetchBoard),
-      mergeMap(() =>
-        this.boardService.fetchBoard().pipe(
+      mergeMap(({ playerId }) =>
+        this.boardService.fetchBoard(playerId).pipe(
           map((response) => {
             const tileMatrix = convertArrayStringIntoMatrix(
               (response as FetchBoardResponse).board

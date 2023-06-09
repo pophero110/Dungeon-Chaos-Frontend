@@ -41,14 +41,14 @@ describe('BoardService', () => {
       '##########E#',
     ];
 
-    service.fetchBoard().subscribe((response) => {
+    service.fetchBoard(1).subscribe((response) => {
       expect(response).toEqual(mockResponse);
     });
 
     const req = httpMock.expectOne(expectedUrl);
     console.log(req);
 
-    expect(req.request.method).toBe('GET');
+    expect(req.request.method).toBe('POST');
     req.flush(mockResponse);
   });
 });

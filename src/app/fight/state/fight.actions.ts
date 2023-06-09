@@ -11,7 +11,7 @@ export const startFightError = createAction('[Fight] Start Fight Error');
 
 export const startFight = createAction(
   '[Fight] Start Fight',
-  props<{ playerId: number; monsterId: number; opponentPosition: number }>()
+  props<{ playerId: number; opponentPosition: number }>()
 );
 
 export const playerPerformAction = createAction(
@@ -45,4 +45,7 @@ export const endFight = createAction('[Fight] End Fight');
 
 export const playerWinFight = createAction('[Fight] Player Win Fight');
 
-export const playerLoseFight = createAction('[Fight] Player Lose Fight');
+export const playerLoseFight = createAction(
+  '[Fight] Player Lose Fight',
+  props<{ playerId: number }>()
+);

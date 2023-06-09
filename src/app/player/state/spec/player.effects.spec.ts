@@ -11,6 +11,7 @@ import { PlayerService } from '../../service/player.service';
 import { Actions } from '@ngrx/effects';
 import { fakePlayerState } from 'src/app/test/fakeState';
 import { initializeInventory } from 'src/app/inventory/state/inventory.actions';
+import { fetchBoard } from 'src/app/board/state/board.actions';
 
 describe('PlayerEffects', () => {
   let playerEffects: PlayerEffects;
@@ -46,12 +47,15 @@ describe('PlayerEffects', () => {
 
     playerEffects.createPlayer$.subscribe((result: any) => {
       console.log({ result });
+      expect([]);
       if (result.type === createPlayerSuccess.type) {
         expect(result).toEqual(
           createPlayerSuccess({ playerState: fakePlayerState })
         );
-      } else {
+      } else if (result.type === initializeInventory.type) {
         expect(result.type).toEqual(initializeInventory.type);
+      } else {
+        expect(result.type).toEqual(fetchBoard.type);
       }
     });
   });

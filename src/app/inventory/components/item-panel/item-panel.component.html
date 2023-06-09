@@ -9,13 +9,9 @@
   <div class="inventory__itemPanel__itemDetails">
     <ng-container [ngSwitch]="selectedInventoryItem.item.id">
       <div class="inventory__itemPanel__itemDetails__token">
-        <app-plain-sword-token *ngSwitchCase="1"></app-plain-sword-token>
-        <app-round-shield-token *ngSwitchCase="2"></app-round-shield-token>
-        <app-health-potion-token *ngSwitchCase="3"></app-health-potion-token>
-        <app-broad-sword-token *ngSwitchCase="4"></app-broad-sword-token>
-        <app-viking-shield-token *ngSwitchCase="5"></app-viking-shield-token>
-        <app-plain-dagger-token *ngSwitchCase="6"></app-plain-dagger-token>
-        <app-bowie-knfie-token *ngSwitchCase="7"></app-bowie-knfie-token>
+        <app-token-displayer
+          [itemId]="selectedInventoryItem.item.id"
+        ></app-token-displayer>
       </div>
     </ng-container>
     <!--TODO Create two shared component, one for displaying item token and one for displaying item details -->
@@ -38,12 +34,6 @@
         </li>
         <li>
           <p>Rarity: {{ selectedInventoryItem.item.rarity || 0 }}</p>
-        </li>
-        <li>
-          <p>
-            Special Ability:
-            {{ selectedInventoryItem.item.specialAbility || "none" }}
-          </p>
         </li>
       </ul>
       <ul *ngIf="selectedInventoryItem.item.type === itemType.POTION">

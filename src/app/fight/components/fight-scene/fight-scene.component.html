@@ -1,26 +1,28 @@
-<div class="fightScene">
+<div class="fightScene" *ngIf="opponent">
   <div
     class="fightScene__opponent"
     [ngClass]="{ fightScene__turnIndicator: isOpponentTurn }"
   >
     <div class="fightScene__opponent__token">
-      <app-golblin-token></app-golblin-token>
+      <app-monster-displayer
+        [monsterName]="opponent.name"
+      ></app-monster-displayer>
     </div>
     <ul>
       <li>
-        <p>Name: {{ opponent?.name }}</p>
+        <p>Name: {{ opponent.name }}</p>
       </li>
       <li>
-        <p>Health: {{ opponent?.health }}</p>
+        <p>Health: {{ opponent.health }}</p>
       </li>
       <li>
-        <p>Attack: {{ opponent?.attack }}</p>
+        <p>Attack: {{ opponent.attack }}</p>
       </li>
       <li>
-        <p>Defense: {{ opponent?.defense }}</p>
+        <p>Defense: {{ opponent.defense }}</p>
       </li>
       <li>
-        <p>Speed: {{ opponent?.speed }}</p>
+        <p>Speed: {{ opponent.speed }}</p>
       </li>
     </ul>
   </div>

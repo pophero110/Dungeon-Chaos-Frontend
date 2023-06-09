@@ -17,3 +17,10 @@ export const selectIsPlayerCreated = createSelector(
   selectPlayerState,
   (state) => state.isCreated
 );
+
+export const selectPlayerIdentityKeyAndDifficulty = createSelector(
+  selectPlayerState,
+  (state) => {
+    return { identityKey: state.identityKey, difficulty: state.difficulty };
+  }
+);

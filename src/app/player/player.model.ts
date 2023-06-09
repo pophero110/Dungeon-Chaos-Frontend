@@ -6,4 +6,6 @@ export interface Player {
   defense: number;
   speed: number;
   goldCoin: number;
+  identityKey: string;
+  difficulty: number;
 }

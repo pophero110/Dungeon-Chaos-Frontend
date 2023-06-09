@@ -2,10 +2,13 @@ import { createReducer, on } from '@ngrx/store';
 import {
   createPlayerError,
   createPlayerSuccess,
+  enterPortalSuccess,
+  getPlayerByIdentityKeySuccess,
   playerDie,
   updatePlayer,
 } from './player.actions';
 import { log } from 'src/app/utils/log';
+import { getPlayerByIdentityKeyError } from './player.actions';
 
 export interface PlayerState {
   id: number;
@@ -16,6 +19,8 @@ export interface PlayerState {
   speed: number;
   goldCoin: number;
   isCreated: boolean;
+  identityKey: string;
+  difficulty: number;
 }
 
 export const initialState: PlayerState | object = {
@@ -40,5 +45,23 @@ export const playerReducer = createReducer(
   on(createPlayerError, () => {
     new Error('Player creation failed');
     return initialState;
+  }),
+  on(getPlayerByIdentityKeySuccess, (state, { playerState }) => {
+    log('get player by identity success', playerState);
+    return {
+      ...state,
+      ...playerState,
+      isCreated: true,
+    };
+  }),
+  on(getPlayerByIdentityKeyError, (state, { error }) => {
+    log('get player by identity key error', error);
+    return {
+      ...state,
+    };
+  }),
+  on(enterPortalSuccess, (state) => {
+    log('enter portal success');
+    return { ...state };
   })
 );
