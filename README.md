@@ -2,7 +2,7 @@
 
 **Developer**: Jeff Ou.  
 **Description**: A single-player board-like game with turn-based fighting that is set within a grid of blocks, players strategically navigate through the dungeon, uncovering hidden pathways, encountering dangerous monsters, and collecting valuable loot  
-**Backend Repo**: https://github.com/pophero110/Dugneon-Chaos-Backend
+**Backend Repo**: https://github.com/pophero110/Dungeon-Chaos-Backend
 
 # Technologies
 
