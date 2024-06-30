@@ -1,4 +1,4 @@
-import { environment } from 'src/environment';
+import { environment } from 'src/environments/environment';
 
 export interface InventoryRequest {
   itemId: number;

@@ -1,4 +1,4 @@
-import { environment } from 'src/environment';
+import { environment } from 'src/environments/environment';
 
 export interface FightRequest {
   playerId: number;

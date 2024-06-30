@@ -1,4 +1,4 @@
-import { environment } from 'src/environment';
+import { environment } from 'src/environments/environment';
 
 export const createPlayerUrl = `${environment.apiUrl}/api/players`;
 
